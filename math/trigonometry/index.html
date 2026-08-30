@@ -30,12 +30,13 @@
     h1 { margin: 0; font-size: clamp(38px, 7vw, 66px); line-height: 1.06; letter-spacing: -.04em; }
     h1 span { color: var(--blue); }
     .intro { margin: 18px 0 0; color: var(--muted); font-size: 18px; line-height: 1.75; }
-    .course-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .course-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .course-card { display: flex; min-height: 290px; flex-direction: column; padding: 26px; border: 1px solid rgba(24,33,47,.12); border-radius: 22px; color: inherit; background: rgba(255,255,255,.86); box-shadow: var(--shadow); text-decoration: none; transition: transform 180ms ease, border-color 180ms ease; }
     .course-card:hover, .course-card:focus-visible { transform: translateY(-5px); border-color: rgba(53,102,214,.5); outline: none; }
     .number { width: fit-content; padding: 6px 10px; border-radius: 9px; color: var(--blue-dark); background: #eaf0ff; font-size: 13px; font-weight: 800; letter-spacing: .08em; }
     .course-card:nth-child(2) .number { color: #7a4e00; background: #fff1b8; }
     .course-card:nth-child(3) .number { color: #17694c; background: #dff7ec; }
+    .course-card:nth-child(4) .number { color: #7a325d; background: #f9e2f1; }
     .icon { margin: 26px 0 15px; font-size: 42px; line-height: 1; }
     h2 { margin: 0; font-size: 24px; line-height: 1.35; }
     .course-card p { margin: 10px 0 24px; color: var(--muted); line-height: 1.65; }
@@ -51,7 +52,7 @@
     <header>
       <div class="eyebrow">📐 三角函数 · 互动课程</div>
       <h1>角度<span>侦探社</span></h1>
-      <p class="intro">从真实问题出发，依次认识三角函数、测量方法、特殊角与斜率。三节课程可以独立打开，也可以在页面底部互相跳转。</p>
+      <p class="intro">从真实问题出发，依次认识三角函数、测量方法、特殊角、斜率与计算应用。四节课程可以独立打开，也可以在页面底部互相跳转。</p>
     </header>
     <section class="course-grid" aria-label="课程列表">
       <a class="course-card" href="./trigonometry-intro-interactive-lesson.html">
@@ -68,6 +69,11 @@
         <span class="number">LESSON 03</span><span class="icon" aria-hidden="true">🔐</span>
         <h2>特殊角密码与斜率</h2><p>拆解 30°、45°、60° 的规律，再连接角度与斜率。</p>
         <span class="enter">破解密码 <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+      <a class="course-card" href="./trig-lesson-04-calculator-line-challenge.html">
+        <span class="number">LESSON 04</span><span class="icon" aria-hidden="true">🧮</span>
+        <h2>三角计算与斜率挑战</h2><p>练习三角函数计算，并挑战一次函数和垂直直线的斜率问题。</p>
+        <span class="enter">接受挑战 <span class="arrow" aria-hidden="true">→</span></span>
       </a>
     </section>
   </main>
