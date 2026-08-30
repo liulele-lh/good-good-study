@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="面向初中生的三角函数互动入门课：从测楼高出发，理解定义、用途并完成练习。" />
+  <title>角度侦探社｜三角函数互动入门</title>
+  <style>
+    :root{
+      --ink:#202124;--muted:#667085;--paper:#fffdf7;--cream:#f7f1df;
+      --blue:#316bea;--sky:#dce9ff;--red:#ef5b4c;--yellow:#ffd75e;
+      --green:#28a67a;--purple:#8657d9;--line:#202124;
+      --shadow:5px 5px 0 var(--line);--radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--paper);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
+    button,input{font:inherit}
+    a{color:inherit}
+    .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px clamp(18px,5vw,72px);background:rgba(255,253,247,.92);border-bottom:2px solid var(--line);backdrop-filter:blur(12px)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.04em}
+    .brand-badge{display:grid;place-items:center;width:37px;height:37px;background:var(--yellow);border:2px solid var(--line);border-radius:11px;transform:rotate(-4deg)}
+    .progress{width:min(260px,42vw);height:10px;border:2px solid var(--line);border-radius:99px;background:#fff;overflow:hidden}
+    .progress i{display:block;width:0;height:100%;background:var(--green);transition:width .2s}
+    main{width:min(1120px,calc(100% - 32px));margin:auto}
+    .hero{min-height:88vh;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:50px;padding:72px 0 54px}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;background:var(--yellow);border:2px solid var(--line);border-radius:99px;font-weight:800;transform:rotate(-1deg)}
+    h1{font-size:clamp(48px,8vw,96px);line-height:.98;margin:24px 0 22px;letter-spacing:-.06em}
+    h1 em{display:block;color:var(--blue);font-style:normal}
+    .lead{font-size:clamp(18px,2vw,23px);max-width:650px;color:#3d4655}
+    .cta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:14px 20px;background:var(--blue);color:#fff;border:2px solid var(--line);border-radius:14px;box-shadow:var(--shadow);font-weight:900;text-decoration:none;transition:.2s}
+    .cta:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--line)}
+    .case-card{position:relative;background:var(--sky);border:3px solid var(--line);border-radius:30px;box-shadow:10px 10px 0 var(--line);padding:22px;transform:rotate(1deg)}
+    .case-card:before{content:"任务 01";position:absolute;right:-18px;top:-20px;padding:7px 13px;background:var(--red);color:white;border:2px solid var(--line);border-radius:10px;font-weight:900;transform:rotate(5deg)}
+    #heroCanvas{display:block;width:100%;aspect-ratio:5/4;background:linear-gradient(#b9dcff 0 68%,#9ed889 68%);border:2px solid var(--line);border-radius:18px}
+    .question{margin:16px 4px 0;font-size:20px;font-weight:900}
+    section{padding:84px 0}
+    .section-no{color:var(--red);font-weight:1000;letter-spacing:.12em}
+    h2{font-size:clamp(34px,5vw,58px);line-height:1.12;margin:8px 0 16px;letter-spacing:-.04em}
+    .section-intro{font-size:19px;color:var(--muted);max-width:760px;margin-bottom:34px}
+    .lab{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:stretch}
+    .canvas-wrap,.panel,.formula-card,.quiz-card,.final-card{border:2px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow)}
+    .canvas-wrap{padding:14px;background:#f5f8ff;min-height:420px;display:flex}
+    #triangleCanvas{width:100%;min-height:390px;display:block}
+    .panel{padding:24px;background:var(--cream)}
+    .panel h3,.quiz-card h3{font-size:24px;margin:0 0 14px}
+    .slider-label{display:flex;justify-content:space-between;font-weight:900;margin-top:10px}
+    input[type=range]{width:100%;accent-color:var(--blue)}
+    .stat{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;margin:14px 0}
+    .stat-line{height:2px;background:#c8c3b5}
+    .ratio{font-family:Consolas,monospace;font-weight:900;font-size:19px}
+    .tip{margin-top:20px;padding:14px;border:2px dashed var(--line);border-radius:14px;background:#fff;font-weight:700}
+    .discovery{margin-top:28px;padding:22px 26px;border-left:9px solid var(--green);background:#e7f8f0;border-radius:0 18px 18px 0;font-size:clamp(20px,2.5vw,28px);font-weight:900}
+    .bridge{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;margin:35px 0}
+    .bridge-box{padding:25px;text-align:center;border:2px solid var(--line);border-radius:18px;font-size:26px;font-weight:1000;background:var(--yellow)}
+    .bridge-box:last-child{background:var(--sky)}
+    .bridge-arrow{font-size:38px;font-weight:900;color:var(--red)}
+    .uses{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .use{padding:22px 18px;border:2px solid var(--line);border-radius:18px;background:#fff;transition:.2s}
+    .use:hover{transform:translateY(-6px);box-shadow:0 8px 0 var(--yellow)}
+    .use b{display:block;font-size:20px;margin-top:8px}
+    .use span{font-size:35px}
+    .formulas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+    .formula-card{padding:26px;text-align:center;position:relative;overflow:hidden}
+    .formula-card:nth-child(1){background:#fff1ef}.formula-card:nth-child(2){background:#eef4ff}.formula-card:nth-child(3){background:#ebfaf3}
+    .symbol{font:1000 38px Georgia,serif;margin-bottom:8px}
+    .fraction{display:inline-grid;grid-template-rows:1fr 2px 1fr;align-items:center;min-width:120px;font-size:19px;font-weight:900}
+    .fraction i{height:2px;background:var(--line)}
+    .memory{margin:32px auto 0;max-width:740px;padding:18px;text-align:center;background:var(--purple);color:white;border:2px solid var(--line);border-radius:16px;box-shadow:var(--shadow);font-size:20px;font-weight:900}
+    .quizzes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .quiz-card{padding:24px}
+    .quiz-tag{display:inline-block;padding:4px 9px;border-radius:8px;background:var(--yellow);border:2px solid var(--line);font-size:13px;font-weight:900}
+    .options{display:grid;gap:10px;margin-top:18px}
+    .option{padding:12px 14px;text-align:left;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font-weight:800;transition:.15s}
+    .option:hover{background:var(--sky);transform:translateX(4px)}
+    .option.correct{background:#c9f2df}.option.wrong{background:#ffd7d2}
+    .feedback{min-height:30px;margin:12px 0 0;font-weight:900}
+    .challenge{margin-top:22px;background:#202124;color:#fff;border-radius:var(--radius);padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+    .challenge h3{font-size:28px;margin:0 0 10px}.challenge p{color:#d8dae0}
+    .calc{background:#fff;color:var(--ink);padding:22px;border-radius:16px}
+    .calc label{display:block;font-weight:900;margin:8px 0 4px}
+    .calc input{width:100%;padding:10px;border:2px solid var(--line);border-radius:10px}
+    .calc button{width:100%;margin-top:15px;padding:12px;border:2px solid var(--line);border-radius:10px;background:var(--yellow);font-weight:1000;cursor:pointer}
+    #calcResult{font-size:22px;font-weight:1000;color:var(--blue);margin:12px 0 0}
+    .final-card{padding:38px;background:var(--yellow);text-align:center;margin-bottom:84px}
+    .final-card p{font-size:clamp(20px,3vw,30px);font-weight:900;max-width:850px;margin:12px auto}
+    footer{text-align:center;padding:30px;color:var(--muted);border-top:2px solid var(--line)}
+    .reveal{opacity:0;transform:translateY(24px);transition:.6s ease}.reveal.visible{opacity:1;transform:none}
+    @media(max-width:800px){.hero,.lab,.challenge{grid-template-columns:1fr}.hero{padding-top:45px}.uses,.formulas{grid-template-columns:1fr 1fr}.quizzes{grid-template-columns:1fr}.bridge{grid-template-columns:1fr}.bridge-arrow{transform:rotate(90deg);text-align:center}.case-card{transform:none}.topbar{padding:10px 16px}}
+    @media(max-width:520px){main{width:min(100% - 22px,1120px)}.uses,.formulas{grid-template-columns:1fr}h1{font-size:49px}.progress{width:110px}.canvas-wrap{min-height:320px}#triangleCanvas{min-height:290px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-badge">△</span>角度侦探社</div>
+    <div class="progress" aria-label="阅读进度"><i id="progressBar"></i></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">🔎 初中数学 · 第一案</span>
+        <h1>不爬楼，<em>怎么量楼高？</em></h1>
+        <p class="lead">一把卷尺、一个测角器，再加上一点“边与角的秘密”，就能测出够不到的高度。这个秘密，就是三角函数。</p>
+        <a class="cta" href="#origin">开始破案 <span>↓</span></a>
+      </div>
+      <div class="case-card">
+        <canvas id="heroCanvas" width="620" height="496" aria-label="测量教学楼高度示意动画"></canvas>
+        <p class="question">已知距离 20 m、仰角 40°，楼高藏在哪里？</p>
+      </div>
+    </section>
+
+    <section id="origin" class="reveal">
+      <div class="section-no">01 · 定义从哪儿来？</div>
+      <h2>同一个角，藏着不变的比例</h2>
+      <p class="section-intro">拖动角度，看看三角形怎样变化。三角形可以放大或缩小，但只要角度相同，它们的“身材比例”就相同。</p>
+      <div class="lab">
+        <div class="canvas-wrap"><canvas id="triangleCanvas" width="760" height="460" aria-label="可调角度的直角三角形"></canvas></div>
+        <aside class="panel">
+          <h3>实验控制台</h3>
+          <div class="slider-label"><span>角 A</span><strong><span id="angleValue">35</span>°</strong></div>
+          <input id="angleSlider" type="range" min="15" max="70" value="35" aria-label="调整角A的大小" />
+          <div class="stat"><span>对边 ÷ 斜边</span><i class="stat-line"></i><span class="ratio" id="sinValue">0.574</span></div>
+          <div class="stat"><span>邻边 ÷ 斜边</span><i class="stat-line"></i><span class="ratio" id="cosValue">0.819</span></div>
+          <div class="stat"><span>对边 ÷ 邻边</span><i class="stat-line"></i><span class="ratio" id="tanValue">0.700</span></div>
+          <div class="tip">💡 试着把角度调回同一个数：无论三角形画多大，这三个比值都不会变。</div>
+        </aside>
+      </div>
+      <div class="discovery">发现：角度一确定，三条边之间的比例也就确定了。数学家给这三个常用比例起了名字。</div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-no">02 · 它解决什么问题？</div>
+      <h2>给“角”和“边”搭一座桥</h2>
+      <div class="bridge">
+        <div class="bridge-box">已知角度<br />40°</div><div class="bridge-arrow">⇄</div><div class="bridge-box">推算边长<br />楼有多高？</div>
+      </div>
+      <p class="section-intro">知道一个角和一条边，就能推算其他边；知道两条边，也能反过来寻找角度。</p>
+      <div class="uses">
+        <div class="use"><span>🏫</span><b>测楼高</b>不用爬上楼顶</div>
+        <div class="use"><span>🌳</span><b>量树高</b>站在地面完成</div>
+        <div class="use"><span>⛰️</span><b>算坡度</b>判断山坡陡缓</div>
+        <div class="use"><span>🌊</span><b>测河宽</b>不用游到对岸</div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-no">03 · 三个名字</div>
+      <h2>正弦、余弦、正切</h2>
+      <p class="section-intro">先选定锐角 A。斜边永远面对直角；对边面对 A；邻边挨着 A，但不是斜边。</p>
+      <div class="formulas">
+        <article class="formula-card"><div class="symbol">sin A</div><div class="fraction"><span>对边</span><i></i><span>斜边</span></div><p>正弦：对斜</p></article>
+        <article class="formula-card"><div class="symbol">cos A</div><div class="fraction"><span>邻边</span><i></i><span>斜边</span></div><p>余弦：邻斜</p></article>
+        <article class="formula-card"><div class="symbol">tan A</div><div class="fraction"><span>对边</span><i></i><span>邻边</span></div><p>正切：对邻</p></article>
+      </div>
+      <div class="memory">记忆口令：正弦“对斜”，余弦“邻斜”，正切“对邻”</div>
+    </section>
+
+    <section class="reveal" id="practice">
+      <div class="section-no">04 · 轮到你破案</div>
+      <h2>从辨认到应用</h2>
+      <p class="section-intro">点击选项，马上知道自己的推理是否正确。</p>
+      <div class="quizzes">
+        <article class="quiz-card" data-answer="1">
+          <span class="quiz-tag">第 1 关 · 认边</span><h3>斜边是哪一条？</h3><p>在直角三角形中，斜边是……</p>
+          <div class="options"><button class="option">最长的任意边</button><button class="option">直角所对的边</button><button class="option">角 A 旁边的边</button></div><p class="feedback" aria-live="polite"></p>
+        </article>
+        <article class="quiz-card" data-answer="2">
+          <span class="quiz-tag">第 2 关 · 选函数</span><h3>已知邻边，要求对边</h3><p>已知角 A，还应该选择哪一个？</p>
+          <div class="options"><button class="option">sin A</button><button class="option">cos A</button><button class="option">tan A</button></div><p class="feedback" aria-live="polite"></p>
+        </article>
+        <article class="quiz-card" data-answer="0">
+          <span class="quiz-tag">第 3 关 · 求比值</span><h3>三边为 3、4、5</h3><p>角 A 的对边为 3，斜边为 5，sin A 等于？</p>
+          <div class="options"><button class="option">3 / 5</button><button class="option">4 / 5</button><button class="option">3 / 4</button></div><p class="feedback" aria-live="polite"></p>
+        </article>
+        <article class="quiz-card" data-answer="1">
+          <span class="quiz-tag">第 4 关 · 建模</span><h3>测旗杆高度</h3><p>已知水平距离和仰角，旗杆高度是角 A 的……</p>
+          <div class="options"><button class="option">邻边</button><button class="option">对边</button><button class="option">斜边</button></div><p class="feedback" aria-live="polite"></p>
+        </article>
+      </div>
+      <div class="challenge">
+        <div><h3>🏁 最终任务：真的测一次</h3><p>你距离旗杆底部若干米，测得仰角。输入数据，计算旗杆高度（暂不考虑眼睛高度）。</p><p><strong>推理：</strong>tan(仰角) = 旗杆高度 ÷ 水平距离</p></div>
+        <div class="calc">
+          <label for="distance">水平距离（米）</label><input id="distance" type="number" min="0.1" step="0.1" value="12" />
+          <label for="angleInput">仰角（度）</label><input id="angleInput" type="number" min="1" max="89" step="1" value="40" />
+          <button id="calculate">开始推算</button><p id="calcResult" aria-live="polite">旗杆高约 10.1 米</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="final-card reveal">
+      <div class="section-no">案件总结</div>
+      <p>角度不能直接告诉我们边有多长，却能确定边与边的比例。知道比例，再知道一条边，就能推算其他边。</p>
+      <p style="font-size:16px;margin-top:18px"><a href="trigonometry-interactive-lesson-02-river-width.html" style="display:inline-block;padding:10px 15px;background:#fff;border:2px solid #202124;border-radius:11px;text-decoration:none;box-shadow:3px 3px 0 #202124">下一集：不用下水，怎么测河宽？ →</a></p>
+    </div>
+  </main>
+  <footer>角度侦探社 · 三角函数第一课</footer>
+
+  <script>
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    function prep(canvas){const rect=canvas.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);return {ctx,w:rect.width,h:rect.height}}
+    function roundRect(ctx,x,y,w,h,r,fill,stroke='#202124'){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fillStyle=fill;ctx.fill();ctx.lineWidth=2;ctx.strokeStyle=stroke;ctx.stroke()}
+    function drawHero(){const c=document.querySelector('#heroCanvas'),{ctx,w,h}=prep(c);ctx.clearRect(0,0,w,h);ctx.fillStyle='#b9dcff';ctx.fillRect(0,0,w,h*.68);ctx.fillStyle='#9ed889';ctx.fillRect(0,h*.68,w,h*.32);
+      const bx=w*.62,by=h*.13,bw=w*.25,bh=h*.57;roundRect(ctx,bx,by,bw,bh,5,'#f2d5a6');for(let r=0;r<4;r++)for(let col=0;col<2;col++)roundRect(ctx,bx+18+col*(bw*.45),by+25+r*(bh*.21),bw*.25,bh*.1,2,'#90c7e8');
+      ctx.strokeStyle='#ef5b4c';ctx.lineWidth=4;ctx.setLineDash([9,7]);ctx.beginPath();ctx.moveTo(w*.16,h*.68);ctx.lineTo(bx,by);ctx.stroke();ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(w*.16,h*.68);ctx.lineTo(bx,h*.68);ctx.strokeStyle='#316bea';ctx.stroke();
+      ctx.fillStyle='#202124';ctx.beginPath();ctx.arc(w*.16,h*.62,12,0,Math.PI*2);ctx.fill();ctx.fillRect(w*.145,h*.65,18,h*.13);ctx.font='700 16px Microsoft YaHei';ctx.fillText('40°',w*.25,h*.64);ctx.fillText('20 m',w*.36,h*.73);ctx.fillStyle='#ef5b4c';ctx.font='900 20px Microsoft YaHei';ctx.fillText('？米',bx+10,by-12);
+    }
+    const angleSlider=document.querySelector('#angleSlider');
+    function drawTriangle(){const c=document.querySelector('#triangleCanvas'),{ctx,w,h}=prep(c);const a=Number(angleSlider.value),rad=a*Math.PI/180,base=Math.min(w*.68,(h-100)/Math.tan(rad));const x=70,y=h-55,topY=y-base*Math.tan(rad),right=x+base;
+      ctx.clearRect(0,0,w,h);ctx.lineJoin='round';ctx.lineWidth=6;ctx.strokeStyle='#202124';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(right,y);ctx.lineTo(right,topY);ctx.closePath();ctx.stroke();
+      ctx.lineWidth=14;ctx.strokeStyle='#316bea';ctx.beginPath();ctx.moveTo(x+5,y);ctx.lineTo(right-5,y);ctx.stroke();ctx.strokeStyle='#ef5b4c';ctx.beginPath();ctx.moveTo(right,y-5);ctx.lineTo(right,topY+5);ctx.stroke();ctx.strokeStyle='#28a67a';ctx.beginPath();ctx.moveTo(right-4,topY+4);ctx.lineTo(x+7,y-5);ctx.stroke();
+      ctx.lineWidth=2;ctx.strokeStyle='#202124';ctx.strokeRect(right-24,y-24,24,24);ctx.beginPath();ctx.arc(x,y,48,-rad,0);ctx.stroke();ctx.font='900 18px Microsoft YaHei';ctx.fillStyle='#202124';ctx.fillText('A = '+a+'°',x+54,y-12);ctx.fillStyle='#316bea';ctx.fillText('邻边',x+base*.46,y+34);ctx.save();ctx.translate(right+31,(y+topY)/2);ctx.rotate(-Math.PI/2);ctx.fillStyle='#ef5b4c';ctx.fillText('对边',0,0);ctx.restore();ctx.fillStyle='#28a67a';ctx.fillText('斜边',x+base*.43,(y+topY)/2-18);
+      document.querySelector('#angleValue').textContent=a;document.querySelector('#sinValue').textContent=Math.sin(rad).toFixed(3);document.querySelector('#cosValue').textContent=Math.cos(rad).toFixed(3);document.querySelector('#tanValue').textContent=Math.tan(rad).toFixed(3);
+    }
+    angleSlider.addEventListener('input',drawTriangle);
+    document.querySelectorAll('.quiz-card').forEach(card=>{card.querySelectorAll('.option').forEach((btn,i)=>btn.addEventListener('click',()=>{card.querySelectorAll('.option').forEach(b=>{b.classList.remove('correct','wrong');b.disabled=true});const ok=i===Number(card.dataset.answer);btn.classList.add(ok?'correct':'wrong');if(!ok)card.querySelectorAll('.option')[Number(card.dataset.answer)].classList.add('correct');card.querySelector('.feedback').textContent=ok?'✓ 推理正确！':'再想一步：绿色选项才符合定义。';card.querySelector('.feedback').style.color=ok?'#167653':'#b43b31'}))});
+    function calculate(){const dist=Number(document.querySelector('#distance').value),ang=Number(document.querySelector('#angleInput').value),out=document.querySelector('#calcResult');if(!(dist>0&&ang>0&&ang<90)){out.textContent='请输入有效数据：距离 > 0，角度在 0°～90° 之间。';return}const result=dist*Math.tan(ang*Math.PI/180);out.textContent=`旗杆高约 ${result.toFixed(1)} 米`}
+    document.querySelector('#calculate').addEventListener('click',calculate);
+    const reveals=[...document.querySelectorAll('.reveal')];const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});reveals.forEach(el=>observer.observe(el));
+    function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('#progressBar').style.width=(max?scrollY/max*100:0)+'%'}
+    addEventListener('scroll',updateProgress,{passive:true});addEventListener('resize',()=>{drawHero();drawTriangle()});drawHero();drawTriangle();calculate();updateProgress();
+  </script>
+</body>
+</html>
