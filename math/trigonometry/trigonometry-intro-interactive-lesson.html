@@ -84,6 +84,7 @@
     #calcResult{font-size:22px;font-weight:1000;color:var(--blue);margin:12px 0 0}
     .final-card{padding:38px;background:var(--yellow);text-align:center;margin-bottom:84px}
     .final-card p{font-size:clamp(20px,3vw,30px);font-weight:900;max-width:850px;margin:12px auto}
+    .series-nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}.series-nav a{padding:10px 13px;border:2px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);text-decoration:none;font-size:15px;font-weight:900}.series-nav a:hover{background:#eef4ff}
     footer{text-align:center;padding:30px;color:var(--muted);border-top:2px solid var(--line)}
     .reveal{opacity:0;transform:translateY(24px);transition:.6s ease}.reveal.visible{opacity:1;transform:none}
     @media(max-width:800px){.hero,.lab,.challenge{grid-template-columns:1fr}.hero{padding-top:45px}.uses,.formulas{grid-template-columns:1fr 1fr}.quizzes{grid-template-columns:1fr}.bridge{grid-template-columns:1fr}.bridge-arrow{transform:rotate(90deg);text-align:center}.case-card{transform:none}.topbar{padding:10px 16px}}
@@ -192,7 +193,7 @@
     <div class="final-card reveal">
       <div class="section-no">案件总结</div>
       <p>角度不能直接告诉我们边有多长，却能确定边与边的比例。知道比例，再知道一条边，就能推算其他边。</p>
-      <p style="font-size:16px;margin-top:18px"><a href="trigonometry-interactive-lesson-02-river-width.html" style="display:inline-block;padding:10px 15px;background:#fff;border:2px solid #202124;border-radius:11px;text-decoration:none;box-shadow:3px 3px 0 #202124">下一集：不用下水，怎么测河宽？ →</a></p>
+      <nav class="series-nav" aria-label="课程系列导航"><a href="index.html">课程目录</a><a href="#origin">第 01 集 ↑</a><a href="trigonometry-interactive-lesson-02-river-width.html">第 02 集：测河宽</a><a href="trigonometry-interactive-lesson-03-special-angles-slope.html">第 03 集：特殊角</a></nav>
     </div>
   </main>
   <footer>角度侦探社 · 三角函数第一课</footer>

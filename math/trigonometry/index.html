@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="三角函数互动课程索引。">
+  <title>三角函数互动课程</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18212f;
+      --muted: #5d6775;
+      --blue: #3566d6;
+      --blue-dark: #24479d;
+      --line: #d9deea;
+      --shadow: 0 18px 50px rgba(45, 64, 105, 0.13);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: radial-gradient(circle at 8% 8%, rgba(255, 216, 90, 0.38), transparent 26rem), linear-gradient(135deg, #f4f7ff 0%, #fffdf7 55%, #eef8f4 100%);
+      font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+    }
+    .page { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 56px; }
+    .back { display: inline-block; margin-bottom: 28px; color: var(--blue-dark); font-weight: 800; text-decoration: none; }
+    header { max-width: 760px; margin-bottom: 38px; }
+    .eyebrow { display: inline-block; margin-bottom: 14px; padding: 8px 13px; border: 1px solid rgba(53,102,214,.24); border-radius: 999px; color: var(--blue-dark); background: rgba(255,255,255,.68); font-size: 14px; font-weight: 700; }
+    h1 { margin: 0; font-size: clamp(38px, 7vw, 66px); line-height: 1.06; letter-spacing: -.04em; }
+    h1 span { color: var(--blue); }
+    .intro { margin: 18px 0 0; color: var(--muted); font-size: 18px; line-height: 1.75; }
+    .course-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .course-card { display: flex; min-height: 290px; flex-direction: column; padding: 26px; border: 1px solid rgba(24,33,47,.12); border-radius: 22px; color: inherit; background: rgba(255,255,255,.86); box-shadow: var(--shadow); text-decoration: none; transition: transform 180ms ease, border-color 180ms ease; }
+    .course-card:hover, .course-card:focus-visible { transform: translateY(-5px); border-color: rgba(53,102,214,.5); outline: none; }
+    .number { width: fit-content; padding: 6px 10px; border-radius: 9px; color: var(--blue-dark); background: #eaf0ff; font-size: 13px; font-weight: 800; letter-spacing: .08em; }
+    .course-card:nth-child(2) .number { color: #7a4e00; background: #fff1b8; }
+    .course-card:nth-child(3) .number { color: #17694c; background: #dff7ec; }
+    .icon { margin: 26px 0 15px; font-size: 42px; line-height: 1; }
+    h2 { margin: 0; font-size: 24px; line-height: 1.35; }
+    .course-card p { margin: 10px 0 24px; color: var(--muted); line-height: 1.65; }
+    .enter { display: flex; align-items: center; justify-content: space-between; margin-top: auto; color: var(--blue-dark); font-weight: 800; }
+    .arrow { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; color: #fff; background: var(--blue); }
+    @media (max-width: 780px) { .page { padding-top: 32px; } .course-grid { grid-template-columns: 1fr; } .course-card { min-height: 230px; } }
+    @media (prefers-reduced-motion: reduce) { .course-card { transition: none; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="../">← 返回 Math</a>
+    <header>
+      <div class="eyebrow">📐 三角函数 · 互动课程</div>
+      <h1>角度<span>侦探社</span></h1>
+      <p class="intro">从真实问题出发，依次认识三角函数、测量方法、特殊角与斜率。三节课程可以独立打开，也可以在页面底部互相跳转。</p>
+    </header>
+    <section class="course-grid" aria-label="课程列表">
+      <a class="course-card" href="./trigonometry-intro-interactive-lesson.html">
+        <span class="number">LESSON 01</span><span class="icon" aria-hidden="true">🏢</span>
+        <h2>不爬楼，怎么量楼高？</h2><p>从影子和角度开始，认识直角三角形中的边与角。</p>
+        <span class="enter">开始学习 <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+      <a class="course-card" href="./trigonometry-interactive-lesson-02-river-width.html">
+        <span class="number">LESSON 02</span><span class="icon" aria-hidden="true">🌊</span>
+        <h2>不下水，怎么测河宽？</h2><p>在岸边构造直角三角形，用可测量的距离求出河宽。</p>
+        <span class="enter">继续探索 <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+      <a class="course-card" href="./trigonometry-interactive-lesson-03-special-angles-slope.html">
+        <span class="number">LESSON 03</span><span class="icon" aria-hidden="true">🔐</span>
+        <h2>特殊角密码与斜率</h2><p>拆解 30°、45°、60° 的规律，再连接角度与斜率。</p>
+        <span class="enter">破解密码 <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
