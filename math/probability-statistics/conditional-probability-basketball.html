@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>条件概率：在95%的范围里重新计算</title>
+<style>
+:root{font:17px/1.85 system-ui,"Microsoft YaHei",sans-serif;color:#233e39;background:#f6f4ed;--foreground:#233e39;--muted-foreground:#61716b;--border:#b9c8bd;--viz-series-1:#28735d;--viz-series-2:#c03b3b;--font-size-base:16px}*{box-sizing:border-box}body{margin:0}main{max-width:860px;margin:auto;padding:32px 24px 56px}a{color:#236250}h1{font-size:clamp(28px,5vw,38px);line-height:1.4}h2{font-size:23px;line-height:1.5}p{margin:12px 0}section{margin-top:32px}.box{background:#fffef9;border:1px solid #dce0d5;border-radius:12px;padding:20px}.muted,.text-small{font-size:14px;color:#61716b}.answer{border-left:4px solid #28735d;background:#eaf2e9;padding:16px 20px;margin-top:18px}.math{font-size:20px;font-weight:650;overflow-wrap:anywhere}.red{color:#b83131}.green{color:#236250}.fraction{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;line-height:1.55;margin:4px 8px}.fraction>span:first-child{border-bottom:1px solid currentColor;padding:0 5px 4px}.fraction>span:last-child{padding:4px 5px 0}.formula-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px}.count-row{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.count-row>div{flex:1;min-width:190px;padding:14px 18px;background:#eaf2e9;border-radius:8px}.count-row strong{display:block;font-size:24px}.diagram-note{font-size:14px;color:#61716b}.end{margin-top:28px;border-top:1px solid #d6ddd2;padding-top:16px}#general-diagram{display:block;width:100%;height:220px}#general-diagram text{font-family:inherit;font-size:15px;fill:#233e39;text-anchor:middle}table{width:100%;border-collapse:collapse;font-size:16px}td,th{text-align:left;padding:8px;border-bottom:1px solid #d6ddd2}@media(max-width:440px){main{padding:24px 14px}h2{font-size:21px}.box{padding:16px}:root{--font-size-base:14px}.math{font-size:18px}.fraction{margin:4px}.count-row>div{min-width:130px}}@media print{body{background:white}main{padding:0}section{break-inside:avoid}}
+</style><style>
+#club-practice{border-top:2px solid #b9c8bd;padding-top:20px}#club-practice label{display:block;margin-top:22px}#club-work{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid #aebdb2;border-radius:8px;background:#fffef9;color:#233e39;font:inherit;resize:vertical;min-height:120px}#club-reveal{font:inherit;font-weight:650;color:#fff;background:#236250;border:0;border-radius:8px;padding:12px 20px;cursor:pointer}#club-reveal:hover{background:#194a3c}#club-practice :focus-visible{outline:3px solid #b87d26;outline-offset:4px}#club-answer[hidden]{display:none!important}#club-answer{margin-top:24px}#club-diagram{display:block;width:100%;height:330px}#club-diagram text{font-family:inherit;font-size:15px;fill:#233e39;text-anchor:middle}#club-diagram text.people{font-size:24px;font-weight:700}@media(max-width:400px){#club-diagram text{font-size:14px}}@media print{#club-reveal,#club-work,#club-practice label{display:none}#club-answer[hidden]{display:block!important}}
+</style>
+</head><body><main>
+<a href="index.html">← 返回概率与统计目录</a>
+<h1>条件概率：把95%的范围，当成新的整体。</h1>
+<section><h2>1. 题目与图：先直接算出答案</h2><div class="box"><p>甲、乙各投篮一次，甲投中的概率是0.8，乙投中的概率是0.75，两人是否投中互不影响。</p><p>事件 <strong>A：“两人至少投中一次”</strong>；事件 <strong>B：“甲投中”</strong>。求 <strong>P(B | A)</strong>，即“已知至少一人投中，甲投中的概率”。</p></div>
+<p>甲不中的概率是0.2，乙不中的概率是0.25。图中每格按“甲的概率 × 乙的概率”计算。</p>
+<div id="basketball-event-sets">
+  <div>A：至少一人投中（着色区域）</div>
+  <svg class="event-diagram" role="img" aria-label="四种结果的包含关系。A包含甲乙都中、甲中乙不中、甲不中乙中。B是甲中，包含左列两种结果，全部位于A内。两人都不中在A外。"></svg>
+  <div class="text-small text-muted">乘法顺序：甲的概率 × 乙的概率。红色虚线框 B：甲投中。区域大小不代表概率。</div>
+  <style>
+    #basketball-event-sets .event-diagram{display:block;width:100%;height:370px}
+    #basketball-event-sets .event-diagram text{fill:var(--foreground);font-family:inherit;font-size:var(--font-size-base);text-anchor:middle}
+    #basketball-event-sets .event-diagram .secondary{fill:var(--muted-foreground)}
+  </style>
+  <script>
+    (()=>{
+      const root=document.getElementById('basketball-event-sets');
+      const svg=root.querySelector('.event-diagram');
+      const ns='http://www.w3.org/2000/svg';
+      function node(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.appendChild(e);return e;}
+      function draw(){
+        const w=root.clientWidth;if(!w)return;
+        svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${w} 370`);
+        const x=64,y=58,r=w-8,m=(x+r)/2,b=348,h=203;
+        node('title',{},'A包含B：四种投篮结果');
+        node('path',{d:`M ${x} ${y} H ${r} V ${h} H ${m} V ${b} H ${x} Z`,fill:'var(--viz-series-1)','fill-opacity':'.17',stroke:'var(--viz-series-1)','stroke-width':2});
+        node('path',{d:`M ${m} ${y} V ${h} M ${x} ${h} H ${m} M ${r} ${h} V ${b} H ${m}`,fill:'none',stroke:'var(--border)','stroke-width':1});
+        node('rect',{x:x+6,y:y+6,width:m-x-12,height:b-y-12,fill:'none',stroke:'var(--viz-series-2)','stroke-width':2,'stroke-dasharray':'6 4'});
+        const left=(x+m)/2,right=(m+r)/2;
+        node('text',{x:left,y:30},'B：甲中');node('text',{x:right,y:30},'甲不中');
+        node('text',{x:30,y:133},'乙中');node('text',{x:30,y:278},'乙不中');
+        function probability(cx,cy,product,result){
+          if(m-x<210){node('text',{x:cx,y:cy,class:'secondary'},product);node('text',{x:cx,y:cy+23,class:'secondary'},'= '+result);}
+          else node('text',{x:cx,y:cy,class:'secondary'},product+' = '+result);
+        }
+        node('text',{x:left,y:121},'甲乙都中');probability(left,155,'0.8 × 0.75','0.60');
+        node('text',{x:right,y:108},'甲不中');node('text',{x:right,y:131},'乙中');probability(right,155,'0.2 × 0.75','0.15');
+        node('text',{x:left,y:246},'甲中');node('text',{x:left,y:269},'乙不中');probability(left,295,'0.8 × 0.25','0.20');
+        node('text',{x:right,y:246},'甲乙都不中');probability(right,278,'0.2 × 0.25','0.05');node('text',{x:right,y:329},'不属于 A');
+      }
+      new ResizeObserver(draw).observe(root);draw();
+    })();
+  </script>
+</div>
+<div class="answer"><p><strong>答案就是：红框所占的概率 ÷ A所占的概率。</strong></p><div class="formula-row math"><span>P(B | A) =</span><span class="fraction"><span class="red">0.60 + 0.20</span><span class="green">0.60 + 0.20 + 0.15</span></span><span>= 0.80 ÷ 0.95</span></div><p class="math">= 16/19 ≈ 0.8421</p></div></section>
+<section><h2>2. 条件概率：从原来的100%，缩小到95%</h2><p>原来在<strong>全部结果（100%）</strong>中看，红框占80%。现在已知“至少一人投中”，就要排除“两人都不中”的5%，<strong>只在A这95%的范围里讨论</strong>。</p><div class="count-row"><div>原来的整体<strong>100%</strong>甲投中占80/100</div><div>筛选后的新整体<strong>原来的95%</strong>甲投中占80/95</div></div><p><strong>原来的95%，成为条件下新的100%。</strong>红框仍然全部保留，所以它在新整体中占80/95，约84.21%。</p></section>
+<section><h2>3. 为什么概率可以相加，再相除？</h2><p>可以引入一个共同总量，比如把全部结果按理论比例分成<strong>100份</strong>：</p><table><thead><tr><th>结果</th><th>概率 × 100份</th></tr></thead><tbody><tr><td>甲乙都中</td><td>0.60 × 100 = 60份</td></tr><tr><td>甲中乙不中</td><td>0.20 × 100 = 20份</td></tr><tr><td>甲不中乙中</td><td>0.15 × 100 = 15份</td></tr><tr><td>甲乙都不中</td><td>0.05 × 100 = 5份</td></tr></tbody></table><p>前三种情况<strong>互不重叠</strong>，所以份数能直接相加。新整体有60 + 20 + 15 = 95份，其中红框有60 + 20 = 80份：</p><div class="formula-row math"><span class="fraction"><span class="red">60 + 20</span><span class="green">60 + 20 + 15</span></span><span>=</span><span class="fraction"><span>(0.60 + 0.20) × 100</span><span>(0.60 + 0.20 + 0.15) × 100</span></span><span>= 0.80/0.95</span></div><p><strong>共同的总量100约掉了，所以可以直接拿概率作比。</strong>这与“符合要求的份数 ÷ 新整体的总份数”是同一个意思。</p><p class="muted">也可以想成100次投篮中按理论比例约有60、20、15、5次。概率乘100给出的是预期次数，实际100次不保证刚好这些数量；这里用100份作比例示意，结果16/19由理论概率精确算得。一般相加时要避免重复计算重叠部分。</p></section>
+<section><h2>4. 条件概率的定义：交集占A的多少？</h2><p>对任意两个事件，只要P(A) &gt; 0：</p><div class="answer"><div class="formula-row math"><span>P(B | A) =</span><span class="fraction"><span class="red">P(A ∩ B)</span><span class="green">P(A)</span></span></div><p><span class="red">分子：A里面同时属于B的部分。</span><br><span class="green">分母：整个A，也就是已知条件限定的范围。</span></p></div>
+<svg id="general-diagram" role="img" aria-label="一般情况：A与B部分重叠。A为绿色区域，两者交集标为红色。条件概率是红色交集的概率除以整个A的概率。B在A外的部分不计入分子。"></svg>
+<p class="diagram-note">一般情况示意：红色交集属于A；B在A外的部分不计入分子。面积不代表概率。</p>
+<p><strong>本题比较特殊：</strong>第一张图中，整个红框B都在A里面，所以交集正好就是B本身。</p><p class="math">A ∩ B = B，所以 P(A ∩ B) = P(B) = 0.8。</p><p>因此本题能直接用 <strong>P(B)/P(A) = 0.8/0.95</strong>。一般题目仍要先找交集，不能都用P(B)代替P(A ∩ B)。</p><p class="muted">这个定义不要求A、B独立。本题P(AB) = 0.8，而P(A)P(B) = 0.95 × 0.8 = 0.76，两者不相等。</p></section>
+<section id="club-practice">
+<h2>5. 练一练：兴趣社团中的条件概率</h2>
+<div class="box">
+<p>某班有40名学生，其中20人参加美术社团，18人参加合唱社团，8人同时参加这两个社团。</p>
+<p>从全班学生中<strong>等可能地随机选出1人</strong>。设事件 <strong>A为“选中的学生参加美术社团”</strong>，事件 <strong>B为“选中的学生参加合唱社团”</strong>。</p>
+<p><strong>已知选中的学生参加了美术社团，求他也参加合唱社团的概率 P(B | A)。请写出计算过程。</strong></p>
+<label for="club-work"><strong>你的计算过程与答案</strong></label>
+<textarea id="club-work" rows="4" placeholder="先独立思考，把你的计算过程写在这里。"></textarea>
+<p class="muted">此处用于临时作答，刷新后不会保留。完成后再展开答案。</p>
+<button id="club-reveal" type="button" aria-expanded="false" aria-controls="club-answer">查看答案与图解</button>
+</div>
+<div id="club-answer" hidden>
+<div class="answer"><strong>答案：P(B | A) = 8/20 = 0.4。</strong><p>已知选中的人参加美术社团，讨论范围缩小到美术社团的20人；其中同时参加合唱社团的有8人。</p></div>
+<h3>先看图：20人的A里面，有8人也属于B。</h3>
+<svg id="club-diagram" role="img" aria-label="全班40人。A美术社团20人，包括只参加美术的12人和两个社团都参加的8人。B合唱社团18人，包括交集8人和只参加合唱的10人。两社团都不参加的有10人。计算条件概率时，只在A的20人中看交集8人。"></svg>
+<p class="diagram-note"><span class="green">绿色实线框：整个A，共20人。</span><br><span class="red">红色区域：A与B的交集，共8人。</span><br>虚线框：整个B，共18人。图形面积不代表人数比例。</p>
+<p>图中的人数是这样得到的：只参加美术为20 − 8 = <strong>12人</strong>；只参加合唱为18 − 8 = <strong>10人</strong>；两个都不参加为40 − (12 + 8 + 10) = <strong>10人</strong>。</p>
+<div class="answer">
+<div class="formula-row math"><span>P(B | A) =</span><span class="fraction"><span class="red">交集的8人</span><span class="green">A中的12 + 8人</span></span><span>= 8/20 = 0.4</span></div>
+</div>
+<p>若用概率表示，P(A) = 20/40，P(A ∩ B) = 8/40。因此：</p>
+<div class="formula-row math"><span>P(B | A) =</span><span class="fraction"><span class="red">P(A ∩ B)</span><span class="green">P(A)</span></span><span>=</span><span class="fraction"><span>8/40</span><span>20/40</span></span><span>= 8/20 = 0.4。</span></div>
+<p><strong>为什么分子不能用合唱社团的18人？</strong>因为其中10人只参加合唱，位于A以外，不符合“已知参加美术社团”这个条件。</p>
+<p>与前一道投篮题不同，这里B并不包含于A，交集只是B的一部分。所以 <strong>P(A ∩ B) = 8/40，不等于P(B) = 18/40</strong>。</p>
+<p class="math">始终记住：在条件A里面，找同时属于B的部分。</p>
+</div>
+</section>
+<div class="end"><a href="index.html">返回概率与统计目录</a></div>
+</main><script>
+(()=>{const svg=document.getElementById('general-diagram'),ns='http://www.w3.org/2000/svg';function add(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.appendChild(e);return e}function draw(){const w=svg.clientWidth;if(!w)return;svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${w} 220`);const l=8,r=w-8,a=w*.34,b=w*.66;
+add('rect',{x:l,y:55,width:b-l,height:130,rx:8,fill:'#e0eee5',stroke:'#28735d','stroke-width':2});
+add('rect',{x:a,y:55,width:b-a,height:130,fill:'#f2cccc'});
+add('rect',{x:a,y:55,width:r-a,height:130,rx:8,fill:'none',stroke:'#677d8b','stroke-width':2,'stroke-dasharray':'6 4'});
+add('text',{x:(l+b)/2,y:30},'A：新的整体');add('text',{x:(a+r)/2,y:210},'B');add('text',{x:(l+a)/2,y:115},'仅属于A');add('text',{x:w/2,y:110},'A ∩ B');add('text',{x:w/2,y:140},'交集');add('text',{x:(b+r)/2,y:110},'仅属于B');add('text',{x:(b+r)/2,y:140},'在A外');}new ResizeObserver(draw).observe(svg);draw();})();
+</script><script>
+(()=>{
+ const button=document.getElementById('club-reveal'),answer=document.getElementById('club-answer'),svg=document.getElementById('club-diagram'),ns='http://www.w3.org/2000/svg';
+ function add(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const [key,value] of Object.entries(attrs))e.setAttribute(key,value);if(text)e.textContent=text;svg.appendChild(e);return e;}
+ function draw(){
+  const w=svg.clientWidth;if(!w)return;svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${w} 330`);
+  const left=9,right=w-9,a=w*.34,b=w*.66,mid=w/2;
+  add('title',{},'社团条件概率：A的20人中，8人同时属于B');
+  add('text',{x:mid,y:24},'全班：40人');
+  add('rect',{x:left,y:92,width:b-left,height:140,rx:8,fill:'#e0eee5',stroke:'#28735d','stroke-width':3});
+  add('rect',{x:a,y:92,width:b-a,height:140,fill:'#f2cccc'});
+  add('rect',{x:a,y:92,width:right-a,height:140,rx:8,fill:'none',stroke:'#677d8b','stroke-width':2,'stroke-dasharray':'6 4'});
+  add('text',{x:(left+b)/2,y:56},'A：美术，共20人');add('text',{x:(a+right)/2,y:80},'B：合唱，共18人');
+  add('text',{x:(left+a)/2,y:137},'只参加美术');add('text',{x:(left+a)/2,y:177,class:'people'},'12人');
+  add('text',{x:mid,y:125},'两个都参加');add('text',{x:mid,y:150},'A ∩ B');add('text',{x:mid,y:187,class:'people'},'8人');
+  add('text',{x:(b+right)/2,y:137},'只参加合唱');add('text',{x:(b+right)/2,y:177,class:'people'},'10人');
+  add('text',{x:(b+right)/2,y:210},'不在A内');
+  add('text',{x:mid,y:278},'两个都不参加：10人');add('text',{x:mid,y:308},'在A、B之外');
+ }
+ button.addEventListener('click',()=>{const show=answer.hidden;answer.hidden=!show;button.setAttribute('aria-expanded',String(show));button.textContent=show?'收起答案与图解':'查看答案与图解';if(show)draw();});
+ new ResizeObserver(draw).observe(svg);
+ window.addEventListener('beforeprint',draw);
+})();
+</script>
+</body></html>
+
