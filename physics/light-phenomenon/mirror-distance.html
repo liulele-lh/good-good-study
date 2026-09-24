@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>平面镜中的物距、像距与物像距离</title>
+  <style>
+    :root{--ink:#173a37;--muted:#58706b;--paper:#f5f1e7;--card:#fffdf7;--mint:#a9dece;--blue:#2979ad;--red:#c85542;--orange:#e0a05a;--line:#ced9d3}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:22px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Microsoft YaHei",sans-serif}button,input{font:inherit}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-offset:3px}.wrap{width:min(1020px,calc(100% - 28px));margin:40px auto}.tag{display:inline-block;border:1px solid var(--ink);border-radius:99px;padding:4px 11px;background:#fff2bd;font-size:12px;letter-spacing:.08em}h1{font-size:clamp(31px,5vw,52px);line-height:1.28;margin:16px 0}h2{font-size:clamp(23px,3vw,29px);line-height:1.45;margin:4px 0 18px}h3{font-size:19px;margin:12px 0}.lead{max-width:780px;color:var(--muted);font-size:18px}.card{background:var(--card);border:1px solid var(--ink);border-radius:13px;padding:clamp(20px,4vw,32px);margin:22px 0;box-shadow:6px 6px 0 var(--mint)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid>.card{margin:0;height:100%}.definitions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.definitions div{background:#edf5f1;border-radius:9px;padding:16px}.definitions b{display:block;color:#08766c}.formula{display:grid;place-items:center;min-height:86px;background:#e8f4ef;border:1px dashed var(--ink);border-radius:9px;font-size:clamp(20px,4vw,28px);font-weight:800;text-align:center;padding:14px;margin:18px 0}.callout{padding:15px 17px;background:#fff2ce;border-left:5px solid var(--orange);border-radius:0 8px 8px 0}.warning{background:#fff0e9;border-color:var(--red)}.small{font-size:13px;color:var(--muted)}.lab{background:#eef5f1}.controls{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}.controls label{display:block;font-size:14px;font-weight:700;margin-bottom:5px}input[type=range]{width:100%;accent-color:#16746a}.buttons{display:flex;gap:8px;flex-wrap:wrap}.buttons button,.quiz button{border:1px solid var(--ink);border-radius:7px;background:white;color:var(--ink);padding:8px 13px;cursor:pointer}.buttons button[aria-pressed=true],.quiz button.primary{background:var(--ink);color:white}.diagram{display:block;width:100%;height:auto;background:#f8fbf9;border:1px solid var(--line);border-radius:10px;margin:18px 0}.diagram text{font-family:"Microsoft YaHei",sans-serif;fill:var(--ink)}.result{padding:14px 16px;background:#deeee8;border-radius:8px;min-height:58px}.compare{width:100%;border-collapse:collapse}.compare th,.compare td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}.compare th{background:#edf4f0}.steps{padding-left:24px}.steps li{margin:9px 0}.quiz-item{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-item:last-child{border:0}.quiz-item p{font-weight:700}.quiz .feedback{min-height:28px;margin-top:9px}.ok{color:#176d52}.no{color:#a74332}.answer{display:none;padding:12px 15px;background:#e7f2ed;border-radius:7px;margin-top:10px}.answer.show{display:block}footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13px}.legend i{display:inline-block;width:24px;border-top:3px solid var(--red);margin-right:5px;vertical-align:middle}.legend .b{border-color:var(--blue);border-top-style:dashed}.legend .g{border-color:#768d87;border-top-style:dashed}@media(max-width:680px){.wrap{margin-top:22px}.grid,.controls,.definitions{grid-template-columns:1fr}.card{box-shadow:4px 4px 0 var(--mint)}.compare{font-size:14px}.compare th,.compare td{padding:9px}}@media print{body{background:white}.card{box-shadow:none;break-inside:avoid}.buttons,input[type=range]{display:none}.wrap{width:100%;margin:0}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="buttons" aria-label="课程导航"><a href="index.html">← 光现象导览</a><a href="plane-mirror.html">第三章：平面镜成像</a><a href="refraction.html">下一章：光的折射 →</a></nav>
+  <span class="tag">光现象 · 平面镜成像补充单元</span>
+  <h1>物距、像距和物像距离<br>到底从哪里量？</h1>
+  <p class="lead">先抓住一个原则：<strong>距离都是沿垂直镜面的方向测量</strong>。平面镜成像，本质上就是关于镜面的轴对称。</p>
+
+  <section class="card">
+    <h2>一、三个“距离”不要混</h2>
+    <div class="definitions">
+      <div><b>物距 u</b>物点到镜面的垂直距离。</div>
+      <div><b>像距 v</b>对应像点到镜面的垂直距离。</div>
+      <div><b>物像距离 L</b>物点到对应像点的距离。</div>
+    </div>
+    <div class="formula">平面镜中：v＝u，L＝u＋v＝2u</div>
+    <p>这里的“到镜面距离”指最短距离，也就是垂线段长度。它不是到镜子边缘、镜框、眼睛或墙面的距离。</p>
+    <div class="callout"><strong>适用前提：</strong>讨论同一个物点 P 和它对应的像点 P′。因为 P、P′与垂足在同一条垂线上，镜面正好平分 PP′。</div>
+  </section>
+
+  <section class="card lab">
+    <span class="tag">互动一 · 认识距离关系</span>
+    <h2>给定物距，像距和物像距离是多少？</h2>
+    <p>这里只观察物体处在某个位置时的距离关系。拖动物距滑块，验证：像距始终等于物距，物像距离始终是物距的两倍。</p>
+    <div class="controls">
+      <div><label for="distance">物距 u：<output id="distance-output">120</output> cm</label><input id="distance" type="range" min="40" max="180" value="120"></div>
+    </div>
+    <svg id="straight-svg" class="diagram" viewBox="0 0 760 350" role="img" aria-label="物体与像在竖直平面镜两侧对称，并标出物距、像距和物像距离"></svg>
+    <div class="legend"><span><i></i>物体</span><span><i class="b"></i>虚像</span><span><i class="g"></i>测量线</span></div>
+    <div id="straight-result" class="result" aria-live="polite"></div>
+  </section>
+
+  <section class="card lab">
+    <span class="tag">互动二 · 研究移动规律</span>
+    <h2>从固定起点出发，移动前后差多少？</h2>
+    <p>本实验独立于上面的滑块：<strong>初始物距固定为 100 cm</strong>，镜子不动，物体沿垂直镜面的方向靠近镜面。淡色轮廓保留移动前的位置。</p>
+    <div class="controls">
+      <div><label for="move">向镜面移动 Δs：<output id="move-output">0</output> cm</label><input id="move" type="range" min="0" max="60" value="0"></div>
+      <div class="buttons"><button type="button" id="reset-move">回到起点</button></div>
+    </div>
+    <svg id="movement-svg" class="diagram" viewBox="0 0 760 350" role="img" aria-label="初始物距100厘米，对比物体和虚像移动前后的位置"></svg>
+    <div class="legend"><span><i></i>现在的物体</span><span><i class="b"></i>现在的虚像</span><span>淡色轮廓：初始位置</span></div>
+    <div id="movement-result" class="result" aria-live="polite"></div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>二、移动规律</h2>
+      <p>镜子不动，物体沿垂直镜面的方向靠近镜面 Δs：</p>
+      <ul>
+        <li>物距减少 Δs；</li>
+        <li>像距也减少 Δs；</li>
+        <li>物像距离减少 2Δs。</li>
+      </ul>
+      <p>例如物体以 1 cm/s 的速度垂直靠近镜面，像也以 1 cm/s 的速度靠近镜面；物体与像相互接近的速度是 2 cm/s。</p>
+      <div class="callout warning">镜子大小不决定像的实际大小；物体远离镜子时，平面镜所成的像仍与物体等大，只是看起来的视角可能变小。</div>
+    </section>
+    <section class="card">
+      <h2>三、镜子移动</h2>
+      <p>若物体不动，平面镜沿垂直镜面的方向向物体平移 Δs（不越过物体）：</p>
+      <ul>
+        <li>新的像仍在物体关于新镜面的位置；</li>
+        <li>像相对地面移动 2Δs；</li>
+        <li>物像距离减少 2Δs。</li>
+      </ul>
+      <p class="small">“像相对镜面的速度”和“像相对地面的速度”不是同一个问题，必须看题目选取的参照物。</p>
+    </section>
+  </div>
+
+  <section class="card lab">
+    <span class="tag">互动三 · 倾斜镜面</span>
+    <h2>镜面一斜，距离还怎么量？</h2>
+    <p>选一个物点 P，从 P 向镜面作垂线；在镜后沿同一直线取 P′，让两侧垂直距离相等。镜面无论怎样倾斜，方法不变。</p>
+    <div class="controls">
+      <div><label for="mirror-angle">镜面与竖直方向夹角：<output id="angle-output">12</output>°</label><input id="mirror-angle" type="range" min="-24" max="24" value="12"></div>
+      <div><div class="buttons" role="group" aria-label="选择物点"><button type="button" data-point="A" aria-pressed="true">观察 A 点</button><button type="button" data-point="B" aria-pressed="false">观察 B 点</button><button type="button" data-point="both" aria-pressed="false">显示完整物像</button></div></div>
+    </div>
+    <svg id="tilted-svg" class="diagram" viewBox="0 0 760 420" role="img" aria-label="倾斜平面镜中，物体AB的两个端点分别关于镜面对称"></svg>
+    <div id="tilted-result" class="result" aria-live="polite"></div>
+    <div class="callout"><strong>对线段 AB 的精确说法：</strong>如果 AB 不与镜面平行，A、B 到镜面的垂直距离不同，整个物体没有一个统一的物距。应分别作 A→A′、B→B′，再连接 A′B′。</div>
+  </section>
+
+  <section class="card">
+    <h2>四、作图题的标准步骤</h2>
+    <ol class="steps">
+      <li>找到物体的关键点或端点，例如 A、B。</li>
+      <li>分别过各点作镜面的垂线。</li>
+      <li>在镜后取等距离的对称点 A′、B′。</li>
+      <li>用虚线连接像点；虚像及作图辅助线按题目规范画虚线。</li>
+    </ol>
+    <table class="compare"><thead><tr><th>常见错误</th><th>正确理解</th></tr></thead><tbody><tr><td>从眼睛位置量像距</td><td>像距从像到镜面垂直测量。</td></tr><tr><td>认为物像距离＝像距</td><td>物像距离＝物距＋像距＝2倍物距。</td></tr><tr><td>斜镜中把物体水平平移</td><td>沿垂直镜面的方向找对称点。</td></tr><tr><td>物体远离镜子，像变小</td><td>像的实际大小不变；改变的是位置和视角。</td></tr></tbody></table>
+  </section>
+
+  <section class="card quiz">
+    <h2>五、快速检查</h2>
+    <div class="quiz-item" data-answer="60"><p>1．物体距平面镜 30 cm，物像距离是多少？</p><div class="buttons"><button>30 cm</button><button>60 cm</button><button>90 cm</button></div><div class="feedback" aria-live="polite"></div><div class="answer">像距也是 30 cm，所以物像距离＝30＋30＝60 cm。</div></div>
+    <div class="quiz-item" data-answer="20"><p>2．物体原来距镜面 50 cm，向镜面移动 10 cm 后，像距是多少？</p><div class="buttons"><button>20 cm</button><button>40 cm</button><button>60 cm</button></div><div class="feedback" aria-live="polite"></div><div class="answer">新物距为 50－10＝40 cm；像距等于新物距，也是 40 cm。</div></div>
+    <div class="quiz-item" data-answer="15"><p>3．物体不动，镜面向物体移动 5 cm，像相对地面移动多少？</p><div class="buttons"><button>5 cm</button><button>10 cm</button><button>15 cm</button></div><div class="feedback" aria-live="polite"></div><div class="answer">镜面移动 5 cm，像的位置移动 2×5＝10 cm。</div></div>
+    <div class="quiz-item" data-answer="perpendicular"><p>4．倾斜镜面作图时，应沿什么方向寻找像点？</p><div class="buttons"><button>水平方向</button><button>竖直方向</button><button>垂直镜面的方向</button></div><div class="feedback" aria-live="polite"></div><div class="answer">物点与像点的连线垂直于镜面，镜面平分这条连线。</div></div>
+  </section>
+
+  <footer>光现象 · 平面镜补充专题 · <a href="index.html">返回课程导览</a> · <a href="plane-mirror.html">返回平面镜成像</a></footer>
+</main>
+<script>
+const NS='http://www.w3.org/2000/svg';
+function s(tag,attrs={},text=''){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));e.textContent=text;return e}
+function line(svg,x1,y1,x2,y2,cls='',dash=''){svg.append(s('line',{x1,y1,x2,y2,stroke:cls||'#173a37','stroke-width':3,'stroke-dasharray':dash}))}
+function label(svg,x,y,t,size=15){svg.append(s('text',{x,y,'font-size':size},t))}
+function arrow(svg,x,y,h,color,dash=''){line(svg,x,y,x,y-h,color,dash);svg.append(s('path',{d:`M${x-9} ${y-h+14} L${x} ${y-h-5} L${x+9} ${y-h+14} Z`,fill:color}))}
+function segmentArrow(svg,p1,p2,color,dash=''){line(svg,p1.x,p1.y,p2.x,p2.y,color,dash);const vx=p2.x-p1.x,vy=p2.y-p1.y,len=Math.hypot(vx,vy),ux=vx/len,uy=vy/len,px=-uy,py=ux,back={x:p2.x-20*ux,y:p2.y-20*uy};svg.append(s('path',{d:`M${p2.x} ${p2.y} L${back.x+9*px} ${back.y+9*py} L${back.x-9*px} ${back.y-9*py} Z`,fill:color}))}
+const distance=document.getElementById('distance'),move=document.getElementById('move'),straight=document.getElementById('straight-svg');
+function drawDistanceDiagram(svg,d,initial=null){
+ const xm=380,scale=1.6,x=xm-d*scale,xi=xm+d*scale;
+ svg.replaceChildren();
+ svg.append(s('rect',{x:xm,y:35,width:12,height:245,fill:'#c9bceb'}));line(svg,xm,35,xm,280);
+ if(initial!==null){
+  const ghost=s('g',{opacity:.22});svg.append(ghost);
+  arrow(ghost,xm-initial*scale,235,120,'#c85542');arrow(ghost,xm+initial*scale,235,120,'#2979ad','9 6');
+  label(svg,xm-initial*scale-26,65,'初始物体',13);label(svg,xm+initial*scale-26,65,'初始虚像',13);
+ }
+ arrow(svg,x,235,120,'#c85542');arrow(svg,xi,235,120,'#2979ad','9 6');
+ line(svg,x,270,xm,270,'#768d87','7 5');line(svg,xm,270,xi,270,'#768d87','7 5');
+ line(svg,x,315,xi,315,'#768d87','7 5');
+ label(svg,xm-22,25,'镜面');label(svg,x-18,105,'物体');label(svg,xi-18,105,'虚像');
+ const left=s('text',{x:(x+xm)/2,y:260,'font-size':14,'text-anchor':'middle'},'u＝'+d+' cm');
+ const right=s('text',{x:(xm+xi)/2,y:260,'font-size':14,'text-anchor':'middle'},'v＝'+d+' cm');
+ svg.append(left,right);label(svg,xm-70,340,'L＝'+(2*d)+' cm');
+}
+function drawStraight(){
+ const d=Number(distance.value);document.getElementById('distance-output').textContent=d;
+ drawDistanceDiagram(straight,d);
+ document.getElementById('straight-result').innerHTML=`物距 u＝<b>${d} cm</b>，像距 v＝<b>${d} cm</b>，物像距离 L＝<b>${2*d} cm</b>。始终满足 v＝u，L＝2u。`;
+}
+function drawMovement(){
+ const m=Number(move.value),d=100-m;document.getElementById('move-output').textContent=m;
+ drawDistanceDiagram(document.getElementById('movement-svg'),d,100);
+ document.getElementById('movement-result').innerHTML=`移动前：物距 100 cm，像距 100 cm，物像距离 200 cm。<br>移动后：物距 <b>${d} cm</b>，像距 <b>${d} cm</b>，物像距离 <b>${2*d} cm</b>。<br>物体和像各向镜面移动 <b>${m} cm</b>，物像距离减少 ${2*m} cm。`;
+}
+distance.addEventListener('input',drawStraight);move.addEventListener('input',drawMovement);
+document.getElementById('reset-move').addEventListener('click',()=>{move.value=0;drawMovement()});
+drawStraight();drawMovement();
+const tilted=document.getElementById('tilted-svg'),angle=document.getElementById('mirror-angle');let selected='A';
+function reflect(p,a,b){const vx=b.x-a.x,vy=b.y-a.y,t=((p.x-a.x)*vx+(p.y-a.y)*vy)/(vx*vx+vy*vy),f={x:a.x+t*vx,y:a.y+t*vy};return {image:{x:2*f.x-p.x,y:2*f.y-p.y},foot:f,distance:Math.hypot(p.x-f.x,p.y-f.y)}}
+function drawTilted(){const deg=Number(angle.value),rad=deg*Math.PI/180,c={x:400,y:210},half=170,dx=Math.sin(rad)*half,dy=Math.cos(rad)*half,a={x:c.x-dx,y:c.y-dy},b={x:c.x+dx,y:c.y+dy},A={x:200,y:105},B={x:200,y:285},ra=reflect(A,a,b),rb=reflect(B,a,b);document.getElementById('angle-output').textContent=deg;tilted.replaceChildren();tilted.append(s('rect',{x:0,y:0,width:760,height:420,fill:'#f8fbf9'}));line(tilted,a.x,a.y,b.x,b.y,'#173a37');arrow(tilted,B.x,B.y,180,'#c85542');segmentArrow(tilted,rb.image,ra.image,'#2979ad','9 6');label(tilted,A.x-28,A.y-10,'A',19);label(tilted,B.x-28,B.y+20,'B',19);label(tilted,ra.image.x+10,ra.image.y-8,'A′',19);label(tilted,rb.image.x+10,rb.image.y+20,'B′',19);label(tilted,c.x-25,35,'镜面');const showA=selected==='A'||selected==='both',showB=selected==='B'||selected==='both';if(showA){line(tilted,A.x,A.y,ra.image.x,ra.image.y,'#768d87','7 5');tilted.append(s('circle',{cx:ra.foot.x,cy:ra.foot.y,r:5,fill:'#16746a'}));label(tilted,(A.x+ra.foot.x)/2-12,(A.y+ra.foot.y)/2-8,ra.distance.toFixed(0));label(tilted,(ra.foot.x+ra.image.x)/2-12,(ra.foot.y+ra.image.y)/2-8,ra.distance.toFixed(0))}if(showB){line(tilted,B.x,B.y,rb.image.x,rb.image.y,'#768d87','7 5');tilted.append(s('circle',{cx:rb.foot.x,cy:rb.foot.y,r:5,fill:'#16746a'}));label(tilted,(B.x+rb.foot.x)/2-12,(B.y+rb.foot.y)/2+18,rb.distance.toFixed(0));label(tilted,(rb.foot.x+rb.image.x)/2-12,(rb.foot.y+rb.image.y)/2+18,rb.distance.toFixed(0))}document.getElementById('tilted-result').innerHTML=`A点物距＝A′像距≈<b>${ra.distance.toFixed(0)}</b>；B点物距＝B′像距≈<b>${rb.distance.toFixed(0)}</b>。${Math.abs(ra.distance-rb.distance)>1?'两端距离不同，因此不能给整条 AB 只写一个物距。':'两端到镜面距离相同，AB与镜面平行。'}`;}
+angle.addEventListener('input',drawTilted);document.querySelectorAll('[data-point]').forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.point;document.querySelectorAll('[data-point]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));drawTilted()}));drawTilted();
+const keys=[['60 cm'],['40 cm'],['10 cm'],['垂直镜面的方向']];
+document.querySelectorAll('.quiz-item').forEach((item,i)=>item.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{const ok=btn.textContent.trim()===keys[i][0];item.querySelector('.feedback').innerHTML=ok?'<b class="ok">✓ 回答正确</b>':'<b class="no">✗ 再看一下解析</b>';item.querySelector('.answer').classList.add('show')})));
+</script>
+</body>
+</html>
