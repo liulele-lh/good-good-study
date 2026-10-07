@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>为什么天空是蓝色，晚霞却偏红？｜光现象研究所</title>
+<meta name="description" content="从太阳光、颜色、滤色片到空气散射，用八步互动与两段光路理解蓝天、晚霞，并区分反射、折射与偏振。"><style>
+:root{color-scheme:light;--paper:#f5f3ed;--surface:#fffefb;--ink:#202e35;--muted:#64737a;--line:#dce2dd;--accent:#216e61;--soft:#e7f0e9;--night:#142539;--night-muted:#b8c9d7;--gold:#ffe19a;--red:#ff876d;--blue:#7ebfff;--green:#8ad8b9}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Microsoft YaHei","PingFang SC",system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #c98029;outline-offset:4px}button:disabled{opacity:.4;cursor:default}.shell{max-width:1280px;margin:auto;padding:34px 38px 24px}.mast{display:flex;justify-content:space-between;align-items:center;gap:18px}.eyebrow{font-size:12px;letter-spacing:.13em;color:var(--accent);font-weight:700}.mast small{color:var(--muted)}h1{font-size:clamp(27px,3.4vw,43px);font-weight:600;letter-spacing:-.035em;line-height:1.3;margin:12px 0 8px}.intro{color:var(--muted);margin:0 0 26px}.steps{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 24px}.step{border:1px solid transparent;border-radius:7px;background:transparent;padding:8px 11px;color:var(--muted);min-height:44px}.step span{font-size:12px;margin-right:6px;opacity:.75}.step[aria-current=step]{background:var(--ink);color:white}.step:hover:not([aria-current=step]){background:var(--soft)}.layout{display:grid;grid-template-columns:minmax(0,1fr) 294px;gap:26px}.main{min-width:0}.scene-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.scene-top h2{font-size:23px;line-height:1.35;font-weight:600;margin:0}.counter{font-size:12px;color:var(--muted);white-space:nowrap}.stage{position:relative;background:var(--night);border-radius:16px;overflow:hidden}.stage canvas{width:100%;height:410px;display:block}.scene-caption{color:var(--night-muted);font-size:12px;padding:0 20px 13px;min-height:34px}.controls{margin:18px 0 0;display:flex;gap:13px 24px;align-items:center;flex-wrap:wrap;min-height:60px}.field{display:grid;gap:5px;flex:1;min-width:160px}.field label{display:flex;justify-content:space-between;gap:12px;font-size:14px}.field output{color:var(--accent);font-variant-numeric:tabular-nums}.field input[type=range]{width:100%;accent-color:var(--accent);min-height:30px;cursor:ew-resize}.field select{width:100%;padding:7px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip,.action{border:1px solid var(--line);border-radius:7px;padding:8px 13px;background:var(--surface);color:var(--ink);min-height:44px}.chip[aria-pressed=true]{background:var(--soft);border-color:var(--accent);color:var(--accent)}.action.primary{background:var(--accent);color:white;border-color:var(--accent)}.readout{margin-top:13px;color:var(--muted);font-size:14px;min-height:23px}.explain{padding-top:4px}.question{color:var(--accent);font-size:13px;font-weight:600;margin-bottom:12px}.explain h3{font-size:22px;line-height:1.5;font-weight:600;margin:0 0 16px}.explain p{margin:0 0 16px}.explain .key{border-top:1px solid var(--line);padding-top:16px;margin-top:23px}.key strong{display:block;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:7px}.note{font-size:13px;color:var(--muted)}.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;margin-top:28px}.bottom .progress{height:4px;background:var(--line);flex:1;max-width:240px;border-radius:2px;overflow:hidden}.progress div{height:100%;background:var(--accent);transition:width .2s}footer{font-size:12px;color:var(--muted);margin-top:28px}footer a{color:var(--accent)}details{margin-top:13px}summary{cursor:pointer}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.reset{border:0;background:none;color:var(--muted);font-size:12px;text-decoration:underline}.hint{font-size:13px;color:var(--muted)}
+@media(max-width:980px){.layout{grid-template-columns:minmax(0,1fr) 250px;gap:20px}.shell{padding:25px}.stage canvas{height:390px}.step{padding:7px 8px}.explain h3{font-size:20px}}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.explain{padding-top:7px}.explain h3{margin-bottom:8px}.explain .key{margin-top:14px;padding-top:12px}.explain p{margin-bottom:10px}.shell{padding:20px 16px}.mast small{display:none}.intro{font-size:14px}.steps{gap:3px;margin-bottom:20px}.step{font-size:13px;padding:7px 8px}.scene-top h2{font-size:20px}.stage canvas{height:410px}.field{min-width:130px}.bottom .progress{max-width:100px}.controls{gap:10px 16px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.article-nav{display:flex;gap:10px 20px;flex-wrap:wrap;margin:0 0 30px;font-size:13px}.article-nav a,.article-toc a,.reading a{color:var(--accent);text-underline-offset:4px}.article-nav a:first-child{font-weight:600}.article-lead{max-width:850px;font-size:17px;margin:19px 0 24px}.article-toc{display:flex;gap:10px 22px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:26px;font-size:14px}.interactive-title{margin:30px 0 16px;font-size:22px;font-weight:600}.reading{max-width:850px;margin:55px auto 28px;line-height:1.9}.reading section{margin:35px 0;scroll-margin-top:20px}.reading h2{font-size:25px;line-height:1.5;margin-bottom:15px;font-weight:600}.reading h3{font-size:18px;font-weight:600;margin:22px 0 8px}.reading p{margin:12px 0}.reading .route{font-size:18px;color:var(--accent);font-weight:600;padding:12px 0}.reading .compare-list{padding-left:23px}.reading li{margin:10px 0}.article-related{border-top:1px solid var(--line);padding-top:22px}.article-related a{display:inline-block;margin:5px 18px 5px 0}.article-note{font-size:14px;color:var(--muted)}html{scroll-behavior:smooth}@media(max-width:760px){.article-nav{margin-bottom:22px}.reading{margin-top:35px}.reading h2{font-size:22px}.article-lead{font-size:16px}.article-toc{font-size:13px;gap:8px 18px}}@media print{.steps,.layout,.bottom,.interactive-title,.article-toc,.article-nav{display:none}.reading{max-width:none;margin-top:20px}.reading section{break-inside:avoid}body{background:white}.shell{padding:0}}
+</style>
+</head>
+<body>
+<main class="shell" id="sunlight-lab">
+ <header>
+ <nav class="article-nav" aria-label="课程与文章导航"><a href="index.html">← 光现象研究所</a><a href="dispersion.html">第五章：色散与颜色</a><a href="refraction.html">第四章：光的折射</a><a href="../index.html">物理目录</a></nav>
+ <div class="mast"><div class="eyebrow">光现象 · 独立科普拓展</div><small>一束阳光的旅行</small></div>
+ <h1>为什么天空是蓝色，<br>晚霞却偏红？</h1>
+ <p class="article-lead">同样是太阳发出的光，为什么白天的天空常常是蓝色，日落附近却会出现红橙色的霞光？关键不只是“光里有什么颜色”，还要追问：<strong>它走过了哪条路，最后有哪些光进入眼睛？</strong></p>
+ <nav class="article-toc" aria-label="文章目录"><a href="#interactive-start">八步互动</a><a href="#sunlight-color">阳光与颜色</a><a href="#two-paths">两段光路</a><a href="#blue-and-sunset">蓝天与晚霞</a><a href="#different-effects">易混概念</a></nav>
+ </header>
+ <h2 class="interactive-title" id="interactive-start">先动手：追踪一束光</h2>
+ <noscript><style>.steps,.layout,.bottom,.interactive-title{display:none}</style><p>下方正文可直接阅读。启用 JavaScript 后可使用混光、滤色片、太阳高度等八步互动。</p></noscript>
+ <nav class="steps" aria-label="学习步骤"></nav>
+ <div class="layout">
+  <section class="main" aria-label="互动演示">
+   <div class="scene-top"><h2 id="scene-title"></h2><span class="counter"></span></div>
+   <div class="stage"><canvas id="diagram" role="img" aria-label="当前光学演示"></canvas><div class="scene-caption" id="caption"></div></div>
+   <div class="controls" id="controls"></div>
+   <div class="readout" id="readout" aria-live="polite"></div>
+  </section>
+  <aside class="explain" id="explain" aria-label="这一步的解释"></aside>
+ </div>
+ <div class="bottom"><button class="action" id="prev">← 上一步</button><div class="progress" role="progressbar" aria-label="学习进度" aria-valuemin="0" aria-valuemax="8"><div></div></div><button class="action primary" id="next">下一步 →</button></div>
+
+ <article class="reading" aria-label="科普文章正文">
+  <section id="sunlight-color">
+   <div class="eyebrow">01 / 阳光与颜色</div>
+   <h2>太阳光不是一束单一颜色的光</h2>
+   <p>光是一种电磁波。太阳光中既有眼睛能看见的可见光，也有看不见的红外线、紫外线。可见光包含连续变化的不同波长；我们说的红、橙、黄、绿、蓝、靛、紫，是方便描述的颜色分段。</p>
+   <p>许多不同波长的光混合进入眼睛时，我们通常把阳光感受为接近白色。三棱镜对不同波长的光偏折程度不同，能把它们展开成彩色光带，这叫<strong>色散</strong>。棱镜把原有的光分开，并没有制造新的颜色。</p>
+   <p>颜色是眼睛和大脑对接收到的光产生的感觉。混合光中各部分的比例变化，颜色感觉也会变化。例如红、绿、蓝三束光适当相加可以接近白色；减弱蓝光后，混合结果可能偏黄。太阳光并非只有三种光，屏幕 RGB 只是便于操作的模型。</p>
+  </section>
+  <section id="two-paths">
+   <div class="eyebrow">02 / 先把路线分清楚</div>
+   <h2>你看的那片天空，可以叫作 A</h2>
+   <p>我们看天空时，并不是所有看见的光都从太阳直接射进眼睛。一部分阳光先到达某片空气，再受到空气分子的作用，改变方向进入眼睛。这种向不同方向传播的现象叫<strong>散射</strong>。</p>
+   <p class="route">太阳 → A处的空气或云层 → 你的眼睛</p>
+   <p>这条路线要分两段想：<strong>第一段，阳光到达A处之前，哪些光已经散向别处？第二段，到达A处的光，又有哪些被散射进眼睛？</strong>你看到的颜色，来自最终进入眼睛的光，而不是空气被“涂上”了颜色。</p>
+  </section>
+  <section id="blue-and-sunset">
+   <div class="eyebrow">03 / 同一种机制，不同的路径</div>
+   <h2>蓝光在哪里散开，决定了我们看见什么</h2>
+   <h3>白天：到达A处时还有蓝光，A处更容易把它散射过来</h3>
+   <p>白天太阳较高，阳光到达你看的那片空气A之前，通常经过较短的大气路径。途中也有散射，但到达A处的光仍包含充足的蓝光，也包含红、绿等其他颜色的光。</p>
+   <p>空气分子对短波蓝光的散射比对长波红光强。因此，从A处散射到你眼睛的光中，蓝色成分往往较突出，你就看到了蓝天。<strong>“到达A处仍有蓝光”是条件，“A处更容易把蓝光散射进眼睛”是偏蓝的关键。</strong></p>
+   <h3>傍晚：到达A处之前，较多蓝光已转向别处</h3>
+   <p>日落前后，太阳接近地平线，阳光斜着穿过大气，走过的路径更长。在到达太阳附近那片空气或云层A之前，较多蓝光已经沿途散向别处，到达A处的阳光可能偏红、偏橙。</p>
+   <p>即使空气分子仍更容易散射蓝光，也要先有足够的蓝光照到那里。当入射光中的蓝光已大幅减少时，散射进眼睛的光也可能偏暖。若这束偏暖的阳光照到云层，云中的水滴和冰晶再把它散射到眼睛，我们就可能看到暖色的云。<a href="https://www.weather.gov/fgz/SkyBlue" target="_blank" rel="noopener">蓝天与日落原理</a>；<a href="https://www.weather.gov.hk/en/education/article.htm?title=ele_00349" target="_blank" rel="noopener">云的颜色</a>。</p>
+   <p><strong>蓝天：蓝光在那片空气中被散射进了眼睛。晚霞：阳光到达那片空气或云层前，较多蓝光已散向别处。</strong>蓝光没有消失，也没有变成红光，只是不再沿原来的路线前进。</p>
+   <p class="article-note">这解释的是蓝天和日落附近霞光的典型情况，不是说傍晚整个天空都没有蓝光。其他方向仍可能是蓝色；云、气溶胶和天气条件也会影响真实天空。真正入夜后的黑暗不能仅用“蓝光被散射走了”解释。</p>
+  </section>
+  <section id="different-effects">
+   <div class="eyebrow">04 / 把容易混淆的概念分开</div>
+   <h2>滤色片、偏光镜、反射与折射</h2>
+   <ul class="compare-list">
+    <li><strong>滤色片：</strong>主要选择不同波长的光。例如红色滤色片让较多红光通过，其他波段主要被吸收。它也能改变混合光的组成，但和大气把光散向别处的机制不同。</li>
+    <li><strong>偏光镜：</strong>主要选择光的振动方向。转动两片理想偏振片，可以看到明暗变化，不能把它理解成专门挑出红光、挡住蓝光的滤色片。<a href="https://www.physicsclassroom.com/class/light/lesson-1/polarization" target="_blank" rel="noopener">偏振原理</a>。</li>
+    <li><strong>反射：</strong>光在界面返回原来的介质。镜面反射中，入射角等于反射角，两个角都从法线量起。</li>
+    <li><strong>折射：</strong>光进入另一种介质时，传播方向可能改变。水中的筷子看起来弯折与此有关。大气折射也会影响太阳的视位置，但不能把晚霞简单说成“阳光被折射成了红色”。</li>
+   </ul>
+   <p>解释晚霞时，可以沿着这条因果链：<strong>太阳位置低 → 大气中的路径长 → 较多蓝紫光散向其他方向 → 剩余直射光中红橙色比例升高 → 照亮空气或云层，形成暖色霞光。</strong>朝霞也可以用类似思路理解，这并非秋季独有的现象。</p>
+  </section>
+  <section class="article-related" aria-label="继续阅读">
+   <h2>继续阅读</h2><a href="dispersion.html">光的色散与物体颜色 →</a><a href="reflection.html">光的反射 →</a><a href="refraction.html">光的折射 →</a><a href="invisible-light.html">看不见的光 →</a><a href="index.html">返回光现象导览 →</a>
+  </section>
+ </article>
+ <footer>光谱、光路与强弱均为教学示意。屏幕颜色不能精确再现真实光谱；光点表示光的传播，不表示小球撞击空气分子。
+ <details><summary>模型说明与参考资料</summary><p>太阳可见光用连续光谱示意，不代表实测太阳光谱。混光使用屏幕 RGB 加色模型。大气演示只保留空气分子的选择性散射，使用随波长减小而增强的简化衰减模型；不预测真实天气或天空颜色。大气厚度夸张，路径倍率只对应图中的球壳示意。滤色片、理想偏振片均采用简化模型。</p><p><a href="https://www.weather.gov/fgz/SkyBlue" target="_blank" rel="noopener">美国国家气象局：蓝天与日落</a> · <a href="https://www.weather.gov.hk/en/education/article.htm?title=ele_00349" target="_blank" rel="noopener">香港天文台：云的颜色</a> · <a href="https://www.physicsclassroom.com/class/light/lesson-1/polarization" target="_blank" rel="noopener">The Physics Classroom：偏振</a></p></details>
+ </footer>
+</main>
+<script>
+(()=>{'use strict';
+const root=document.getElementById('sunlight-lab'), $=s=>root.querySelector(s), canvas=$('#diagram'),ctx=canvas.getContext('2d');
+const C={ink:'#f5f7fa',muted:'#b7c8d7',faint:'#54718b',gold:'#ffe19a',red:'#ff876d',green:'#8ad8b9',blue:'#7ebfff',night:'#142539'};
+const S={step:0,split:false,r:100,g:100,b:100,filter:'none',phenomenon:'reflect',alt:60,cloud:true,view:'sun',polar:0};
+try{Object.assign(S,JSON.parse(localStorage.getItem('lightSunsetArticleV1')||'{}'));}catch(e){}
+S.step=Math.max(0,Math.min(7,Number(S.step)||0));
+const lessons=[
+{short:'太阳光',title:'太阳光里，有什么？',question:'01 / 从光源开始',lead:'眼睛只能看到太阳光的一部分。',paras:['光是一种电磁波。太阳发出的光中，既有可见光，也有看不见的紫外线和红外线。','可见光有许多不同波长，并且是连续变化的。我们常说的红、橙、黄、绿、蓝、靛、紫，是方便描述的分段。'],key:'本演示追踪的是太阳光中的可见光。',caption:'光谱只表示波长次序；三个区域的宽度不按真实比例绘制。'},
+{short:'白光与色散',title:'白色阳光，怎样展开成彩色？',question:'02 / 折射知识的延伸',lead:'三棱镜分开了原有的光。',paras:['许多不同波长的可见光混合进入眼睛时，我们通常把阳光感受为接近白色。','光穿过三棱镜时发生折射。在普通玻璃中，不同波长偏折程度不同，于是白光展开成彩色光带。这叫色散。'],key:'棱镜没有制造颜色，而是把混合在一起的光分开。',caption:'普通玻璃棱镜的示意光路：紫光偏折较大，红光较小。'},
+{short:'颜色与混光',title:'颜色，是眼睛接收到的结果',question:'03 / 亲手调配光的比例',lead:'光的比例变了，颜色感觉也会变。',paras:['对于单色光，不同波长可以引起不同的颜色感觉；对于混合光，各部分的比例也很重要。','试着调节红、绿、蓝三束光：都较强时，重叠处接近白色；减弱蓝光后，重叠处会偏黄。'],key:'这是光的加色混合。颜料混合不是同一套规则。',caption:'RGB 是屏幕的简化混光模型；太阳光并非只有红、绿、蓝三种光。'},
+{short:'滤色片',title:'少了一部分光，剩下的是什么色？',question:'04 / 先看“吸收”的例子',lead:'各色光的通过比例不同。',paras:['红色滤色片让较多红光通过，其他波段的光主要被吸收。换一片滤色片，出来的光就可能不同。','这里改变的是混合光的组成。蓝光并没有被染成红光，而是通过得少了。'],key:'滤色片主要靠选择性吸收。稍后，大气用的是“散向别处”。',caption:'带宽和透过率为简化示意；并非任何真实产品的实测数据。'},
+{short:'三种现象',title:'反射、折射、散射，分开看',question:'05 / 给光路起正确的名字',lead:'都能改变方向，但发生方式不同。',paras:[],key:'晚霞的暖色，主要要用散射解释。',caption:'散射图中的光点是传播示意，空气分子不是一面面小镜子。'},
+{short:'正午到傍晚',title:'太阳越低，阳光在大气中走得越远',question:'06 / 晚霞的关键一步',lead:'短波光更容易散开，长路径放大了差别。',paras:['空气分子对短波蓝紫光的散射，比对长波红橙光更强。红橙光也会散射，只是相对较弱。','把太阳拖到地平线附近：更多蓝紫光离开原方向，剩余直射光中的红橙光比例升高。'],key:'不是蓝光变红，而是到达眼睛的各色光比例变了。',caption:'只演示空气分子散射；忽略云、气溶胶、吸收与大气折射，不能预测实际天空颜色。'},
+{short:'蓝天与晚霞',title:'同样是散射，为什么一蓝一暖？',question:'07 / 把光路拆成两段',lead:'先看光到达那里前剩下什么，再看哪些光进入眼睛。',paras:[],key:'蓝光没有消失或变红；区别在于它在哪里散开、是否沿这条路线进入眼睛。',caption:'A代表你正在看的那片空气或云层；这是少量代表性光路，不是精确光强计算。'},
+{short:'拓展：偏光镜',title:'偏光镜，筛选的不是“红绿蓝”',question:'08 / 可选拓展',lead:'偏振方向和颜色，是两个不同维度。',paras:['理想偏振片主要选择光的电场振动方向。转动第二片偏振片，两片之间的夹角改变，透过的光会明暗变化。','普通偏光镜不等于红色滤色片。它可以减弱某些反光，但不能拿“按颜色筛选”来解释它。'],key:'滤色片主要选波长；偏振片主要选振动方向；大气让部分光散向别处。',caption:'理想线偏振片示意：强度相对于第一片之后；真实材料可能带有色偏。'}
+];
+const save=()=>{try{localStorage.setItem('lightSunsetArticleV1',JSON.stringify(S));}catch(e){}};
+let w=0,h=410,animationStart=0,raf=0;
+const T=(s,x,y,size=15,color=C.ink,align='left')=>{ctx.fillStyle=color;ctx.font=`${size}px "Microsoft YaHei",system-ui,sans-serif`;ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(s,x,y);};
+function line(x1,y1,x2,y2,c=C.ink,width=2,dash=[]){ctx.strokeStyle=c;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.setLineDash([]);}
+function arrow(x1,y1,x2,y2,c=C.gold,width=3){line(x1,y1,x2,y2,c,width);let a=Math.atan2(y2-y1,x2-x1);ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-9*Math.cos(a-.45),y2-9*Math.sin(a-.45));ctx.lineTo(x2-9*Math.cos(a+.45),y2-9*Math.sin(a+.45));ctx.fill();}
+function circle(x,y,r,c){ctx.fillStyle=c;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();}
+function sun(x,y,r=19){circle(x,y,r,C.gold);for(let k=0;k<12;k++){let a=k*Math.PI/6;line(x+(r+6)*Math.cos(a),y+(r+6)*Math.sin(a),x+(r+11)*Math.cos(a),y+(r+11)*Math.sin(a),C.gold,2);}}
+function person(x,y){circle(x,y-12,6,C.ink);line(x,y-6,x,y+12);line(x,y+12,x-8,y+22);line(x,y+12,x+8,y+22);line(x-9,y+2,x+9,y+2);}
+function cloud(x,y,scale=1){ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);for(const [a,b,r] of [[-35,2,22],[-12,-9,28],[20,-4,29],[43,7,18]])circle(a,b,r,'#edc39f');ctx.fillStyle='#edc39f';ctx.fillRect(-36,0,78,24);ctx.restore();}
+function wave(x,y,len,period,color,amp=10){ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();for(let n=0;n<=len;n+=2){const yy=y+amp*Math.sin(n/period*2*Math.PI);n?ctx.lineTo(x+n,yy):ctx.moveTo(x+n,yy);}ctx.stroke();}
+function dotPath(points,progress,c){const lens=points.slice(1).map((p,i)=>Math.hypot(p[0]-points[i][0],p[1]-points[i][1])),total=lens.reduce((a,b)=>a+b,0);let s=progress*total;for(let i=0;i<lens.length;i++){if(s<=lens[i]){let u=s/lens[i];circle(points[i][0]+(points[i+1][0]-points[i][0])*u,points[i][1]+(points[i+1][1]-points[i][1])*u,5,c);break;}s-=lens[i];}}
+function wavelength(nm){let r=0,g=0,b=0;if(nm<440){r=(440-nm)/60;b=1;}else if(nm<490){g=(nm-440)/50;b=1;}else if(nm<510){g=1;b=(510-nm)/20;}else if(nm<580){r=(nm-510)/70;g=1;}else if(nm<645){r=1;g=(645-nm)/65;}else r=1;let fac=nm<420?.35+.65*(nm-380)/40:nm>700?.35+.65*(780-nm)/80:1;return `rgb(${[r,g,b].map(v=>Math.round(255*Math.pow(Math.max(0,v*fac),.7))).join(',')})`;}
+function spectrum(x,y,width,height,trans=()=>1){for(let k=0;k<width;k++){let nm=380+400*k/width;ctx.globalAlpha=Math.max(.02,trans(nm));ctx.fillStyle=wavelength(nm);ctx.fillRect(x+k,y,1.5,height);}ctx.globalAlpha=1;}
+function bars(x,y,width,values){const colors=[C.red,C.green,C.blue],names=['红','绿','蓝'];for(let i=0;i<3;i++){T(names[i],x,y+i*24,13);ctx.fillStyle='#2a4057';ctx.fillRect(x+23,y-5+i*24,width,10);ctx.fillStyle=colors[i];ctx.fillRect(x+23,y-5+i*24,width*values[i],10);T(`${Math.round(values[i]*100)}%`,x+width+31,y+i*24,12,C.muted);}}
+function transmission(nm){if(S.filter==='red')return .04+.9/(1+Math.exp(-(nm-610)/13));if(S.filter==='blue')return .04+.9/(1+Math.exp((nm-492)/12));if(S.filter==='yellow')return .04+.9/(1+Math.exp(-(nm-500)/13));return 1;}
+function mass(alt){const a=alt*Math.PI/180,R=1,H=.15;return (-R*Math.sin(a)+Math.sqrt(R*R*Math.sin(a)**2+2*R*H+H*H))/H;}
+function airValues(){let m=mass(S.alt);return [650,550,450].map(n=>Math.exp(-.25*m*Math.pow(550/n,4)));}
+function beamColor(values){let max=Math.max(...values);return `rgb(${values.map(v=>Math.round(255*Math.pow(v/max,.7))).join(',')})`;}
+function draw(p=1){ctx.clearRect(0,0,w,h);let mobile=w<500;const fs=mobile?13:15;
+ switch(S.step){
+ case 0:{sun(w*.5,70,24);arrow(w*.5,108,w*.5,162);let x=24,bw=w-48;const lo=x+bw*.2,hi=x+bw*.8;ctx.fillStyle='#304057';ctx.fillRect(x,190,bw*.2,55);spectrum(lo,190,bw*.6,55);ctx.fillStyle='#4d3a3f';ctx.fillRect(hi,190,bw*.2,55);T('紫外线',x+bw*.1,218,fs,C.ink,'center');T('红外线',x+bw*.9,218,fs,C.ink,'center');T('眼睛可见',w*.5,274,16,C.gold,'center');T('约 380 nm',lo,170,12,C.muted);T('约 780 nm',hi,170,12,C.muted,'right');arrow(x+12,315,w-35,315,C.faint,2);T('波长较短',x,339,13,C.muted);T('波长较长',w-25,339,13,C.muted,'right');dotPath([[w*.5,108],[w*.5,162]],p,C.ink);break;}
+ case 1:{const cx=w*.43,cy=195;sun(45,190,16);ctx.fillStyle='rgba(139,191,219,.13)';ctx.strokeStyle='#9ebfd6';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,105);ctx.lineTo(cx-60,259);ctx.lineTo(cx+75,259);ctx.closePath();ctx.fill();ctx.stroke();arrow(79,190,cx-25,190,C.ink,7);T('白光',90,159,fs);T('玻璃三棱镜',cx,292,fs,C.muted,'center');if(S.split){for(let j=0;j<7;j++){const nm=700-j*47,x2=w-44,y2=230+j*17;line(cx-25,190,cx+45,199+j*3,wavelength(nm),3);arrow(cx+45,199+j*3,x2,y2,wavelength(nm),3);dotPath([[79,190],[cx-25,190],[cx+45,199+j*3],[x2,y2]],p,wavelength(nm));}T('红：偏折较小',w-27,201,12,C.ink,'right');T('紫：偏折较大',w-27,360,12,C.ink,'right');}else{T('点击“放入棱镜并展开”',w*.5,350,fs,C.gold,'center');}break;}
+ case 2:{let x=w*.5,y=170,r=Math.min(86,w*.21);ctx.fillStyle='#000';ctx.fillRect(20,35,w-40,275);ctx.save();ctx.globalCompositeOperation='lighter';circle(x-r*.48,y-r*.2,r,`rgb(${S.r*2.55},0,0)`);circle(x+r*.48,y-r*.2,r,`rgb(0,${S.g*2.55},0)`);circle(x,y+r*.55,r,`rgb(0,0,${S.b*2.55})`);ctx.restore();T('红光',x-r*1.55,y-r*.25,13,C.ink,'center');T('绿光',x+r*1.55,y-r*.25,13,C.ink,'center');T('蓝光',x,y+r*1.7,13,C.ink,'center');ctx.fillStyle=`rgb(${S.r*2.55},${S.g*2.55},${S.b*2.55})`;ctx.fillRect(w*.5-60,327,120,32);T('三束光的混合结果',w*.5,383,14,C.ink,'center');break;}
+ case 3:{const fx=w*.53,top=90,bottom=278;let bands=7;for(let j=0;j<bands;j++){let nm=680-j*44,y=top+j*27,col=wavelength(nm);arrow(35,y,fx-12,y,col,4);let tr=transmission(nm);ctx.globalAlpha=tr;arrow(fx+13,y,w-37,y,col,4);ctx.globalAlpha=1;if(tr<.35){line(fx-6,y-6,fx+6,y+6,C.muted,1);line(fx-6,y+6,fx+6,y-6,C.muted,1);}dotPath([[35,y],[fx-13,y]],p,col);}ctx.fillStyle=S.filter==='none'?'rgba(200,210,220,.1)':S.filter==='red'?'rgba(255,90,60,.28)':S.filter==='blue'?'rgba(60,140,255,.3)':'rgba(255,220,90,.24)';ctx.fillRect(fx-10,67,20,bottom-38);T('进入前',35,42,fs);T('透过后',w-35,42,fs,C.ink,'right');T(S.filter==='none'?'未放滤色片':'滤色片',fx,298,13,C.ink,'center');spectrum(35,335,w-70,18,transmission);T('透过光的组成：紫 → 红',w*.5,377,13,C.muted,'center');break;}
+ case 4:{const x=w*.5,y=225;if(S.phenomenon==='reflect'){line(35,y,w-35,y,C.blue,5);line(x,70,x,y,C.muted,1,[5,5]);let a=[w*.2,105],b=[x,y],c=[w*.8,105];arrow(...a,...b,C.gold,4);arrow(...b,...c,C.gold,4);dotPath([a,b,c],p,C.gold);T('法线',x+10,72,13,C.muted);T('入射光',w*.14,152,fs);T('反射光',w*.78,152,fs,'#f5f7fa','center');T('i',x-27,y-52,16);T('r',x+27,y-52,16);ctx.strokeStyle=C.muted;ctx.lineWidth=1;ctx.beginPath();ctx.arc(x,y,38,Math.atan2(a[1]-y,a[0]-x),Math.atan2(c[1]-y,c[0]-x));ctx.stroke();T('镜面',w-40,y+27,13,C.muted,'right');T('入射角 i = 反射角 r',x,318,18,C.gold,'center');T('两个角都从法线量起',x,354,14,C.muted,'center');}else if(S.phenomenon==='refract'){ctx.fillStyle='#224963';ctx.fillRect(25,190,w-50,160);line(25,190,w-25,190,C.blue,2);line(x,55,x,347,C.muted,1,[5,5]);arrow(w*.2,76,x,190,C.gold,4);arrow(x,190,x+w*.17,336,C.gold,4);dotPath([[w*.2,76],[x,190],[x+w*.17,336]],p,C.gold);T('空气',40,128,fs);T('水',40,253,fs);T('法线',x+9,60,13,C.muted);T('斜入射：空气 → 水，向法线靠近',x,385,mobile?13:16,C.gold,'center');}else{arrow(30,210,w-25,210,C.red,4);circle(x,210,13,'#365773');for(const [dx,dy] of [[-.21,-.25],[.22,-.29],[-.12,.28]]){arrow(x,210,x+w*dx,210+h*dy,C.blue,3);dotPath([[30,210],[x,210],[x+w*dx,210+h*dy]],p,C.blue);}arrow(x,210,x+w*.3,273,'#b88378',1);T('空气分子',x,169,14,C.muted,'center');T('蓝紫光：较易向其他方向散开',w*.5,362,fs,C.ink,'center');T('红橙光也会散射，图中只画少量',w*.5,389,12,C.muted,'center');}break;}
+ case 5:{let R=mobile?76:108,H=R*.15,cx=w*.5,cy=mobile?190:238,oy=cy-R,ang=S.alt*Math.PI/180;circle(cx,cy,R+H,'#355b7e');circle(cx,cy,R,'#42695f');T('地球',cx,cy+30,15,C.ink,'center');person(cx,oy+1);line(cx-95,oy,cx+95,oy,C.faint,1,[4,4]);const dist=mass(S.alt)*H;let ex=cx-dist*Math.cos(ang),ey=oy-dist*Math.sin(ang);let maxD=Math.min(190,(cx-35)/Math.max(.05,Math.cos(ang)),(oy-37)/Math.max(.05,Math.sin(ang)));let sx=cx-maxD*Math.cos(ang),sy=oy-maxD*Math.sin(ang);sun(sx,sy,14);line(sx,sy,ex,ey,'#f0ebde',2);arrow(ex,ey,cx-1,oy,beamColor(airValues()),5);for(let k=0;k<3;k++){let u=.25+k*.24,bx=ex+(cx-ex)*u,by=ey+(oy-ey)*u;arrow(bx,by,bx-20,by-27-10*k,C.blue,2);}dotPath([[ex,ey],[cx,oy]],p,C.gold);T(`太阳高度 ${S.alt}°`,w-18,28,14,C.ink,'right');T('大气层（厚度夸张）',w*.5,cy+R+H+24,12,C.muted,'center');const bx=mobile?28:w*.59,by=mobile?330:300;bars(bx,by,mobile?w-119:w*.26,airValues());if(!mobile){T('直射光剩余比例',bx,by-28,13,C.muted);}break;}
+ case 6:{if(S.view==='sky'){
+  const ax=w*.58,ay=170,ex=w*.81,ey=298;
+  T('① 到A处：仍有充足的蓝光',w*.5,30,fs,C.ink,'center');
+  sun(48,85,19);person(ex,ey);circle(ax,ay,15,'#426780');
+  arrow(79,108,ax,ay,C.ink,4);arrow(ax,ay,w-26,193,C.gold,3);
+  arrow(ax,ay,ex,ey-19,C.blue,4);arrow(ax,ay,w*.35,252,C.blue,2);
+  dotPath([[79,108],[ax,ay],[ex,ey-19]],p,C.blue);
+  T('A：你看的那片空气',ax,ay-39,13,C.ink,'center');
+  T('② A处更容易把蓝光散射进眼睛',w*.5,350,fs,C.blue,'center');
+  T('到A处的阳光并非只有蓝光',w*.5,382,12,C.muted,'center');
+ }else{
+  sun(40,246,18);let cloudX=w*.59,cloudY=130;
+  const endX=cloudX-(mobile?38:50),endY=cloudY+7;
+  T('① 到A处前：蓝光已较多散向别处',w*.5,29,fs,C.ink,'center');
+  person(w*.88,291);
+  let gradient=ctx.createLinearGradient(70,233,endX,endY);gradient.addColorStop(0,C.ink);gradient.addColorStop(.55,C.gold);gradient.addColorStop(1,C.red);
+  arrow(70,233,endX,endY,gradient,4);
+  for(let k=0;k<3;k++){let u=.23+k*.24,xx=70+(endX-70)*u,yy=233+(endY-233)*u;arrow(xx,yy,xx+12,yy-43,C.blue,2);}
+  if(S.cloud){cloud(cloudX,cloudY,mobile?.72:1);arrow(cloudX+22,cloudY+15,w*.88,271,C.red,4);arrow(cloudX,cloudY,cloudX+70,cloudY-50,C.red,2);dotPath([[70,233],[cloudX,cloudY],[w*.88,271]],p,C.red);T('A：你看的云层',cloudX,cloudY-60,13,C.ink,'center');}
+  else{arrow(endX,endY,w-22,70,C.red,3);T('没有云来提供这条散射光路',w*.5,190,mobile?12:14,C.muted,'center');}
+  T(S.cloud?'② A处把偏暖的光散射进眼睛':'② 经云到达眼睛的光路不再存在',w*.5,350,fs,C.red,'center');
+  T('日落附近的霞光；并非整个天空都没有蓝光',w*.5,382,mobile?11:12,C.muted,'center');
+ }break;}
+ case 7:{const y=177,x1=w*.3,x2=w*.66,r=mobile?36:47;arrow(23,y,x1-r-5,y,C.ink,4);for(const [x,rot] of [[x1,0],[x2,S.polar]]){ctx.save();ctx.translate(x,y);circle(0,0,r,'#243f56');ctx.strokeStyle=C.muted;ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.stroke();ctx.rotate(rot*Math.PI/180);for(let q=-r*.6;q<=r*.6;q+=9)line(q,-Math.sqrt(r*r-q*q)*.78,q,Math.sqrt(r*r-q*q)*.78,C.blue,2);ctx.restore();}arrow(x1+r+5,y,x2-r-5,y,C.ink,4);let value=Math.cos(S.polar*Math.PI/180)**2;ctx.globalAlpha=value;arrow(x2+r+5,y,w-20,y,C.ink,5);ctx.globalAlpha=1;T('第一片',x1,252,fs,C.ink,'center');T('第二片',x2,252,fs,C.ink,'center');T('振动方向相差 '+S.polar+'°',w*.5,71,17,C.gold,'center');ctx.fillStyle='#07101c';ctx.fillRect(w*.5-45,293,90,45);ctx.fillStyle=`rgb(${255*Math.sqrt(value)},${255*Math.sqrt(value)},${255*Math.sqrt(value)})`;ctx.fillRect(w*.5-45,293,90,45);T('透过强度 '+Math.round(value*100)+'%',w*.5,370,fs,C.ink,'center');break;}
+ }
+}
+function resize(){const rect=canvas.getBoundingClientRect();w=Math.round(rect.width);h=Math.round(rect.height);let dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
+function animate(){cancelAnimationFrame(raf);if(matchMedia('(prefers-reduced-motion: reduce)').matches){draw();return;}animationStart=performance.now();const loop=t=>{const p=Math.min((t-animationStart)/1300,1);draw(p);if(p<1)raf=requestAnimationFrame(loop);};raf=requestAnimationFrame(loop);}
+function range(id,label,min,max,value,unit=''){return `<div class="field"><label for="${id}">${label}<output id="${id}-value">${value}${unit}</output></label><input id="${id}" type="range" min="${min}" max="${max}" value="${value}"></div>`;}
+function chips(entries,key){return `<div class="chips">${entries.map(([v,label])=>`<button class="chip" data-key="${key}" data-value="${v}" aria-pressed="${S[key]===v}">${label}</button>`).join('')}</div>`;}
+function controls(){let s=S.step,html='';if(s===0)html='<span class="hint">沿光谱从左到右看：波长逐渐增加。</span>';
+ if(s===1)html=`<button class="action primary" id="split">${S.split?'重看光的色散':'放入棱镜并展开'}</button>`;
+ if(s===2)html=range('r','红光',0,100,S.r,'%')+range('g','绿光',0,100,S.g,'%')+range('b','蓝光',0,100,S.b,'%');
+ if(s===3)html='<div class="field"><label for="filter">选择滤色片</label><select id="filter"><option value="none">无滤色片</option><option value="red">红色滤色片</option><option value="blue">蓝色滤色片</option><option value="yellow">黄色滤色片</option></select></div><button class="action" id="trace">追踪一次光路</button>';
+ if(s===4)html=chips([['reflect','反射'],['refract','折射'],['scatter','散射']],'phenomenon')+'<button class="action" id="trace">追踪光路</button>';
+ if(s===5)html=range('alt','太阳离地平线的角度',2,85,S.alt,'°')+'<button class="action" id="noon">太阳较高</button><button class="action" id="sunset">接近日落</button>';
+ if(s===6)html=chips([['sky','白天：看蓝天'],['sun','傍晚：看晚霞']],'view')+(S.view==='sun'?`<label class="hint"><input type="checkbox" id="cloud" ${S.cloud?'checked':''}> 加入云层</label>`:'');
+ if(s===7)html=range('polar','转动第二片偏振片',0,90,S.polar,'°');$('#controls').innerHTML=html;
+ for(const key of ['r','g','b','alt','polar']){const e=$('#'+key);if(e)e.addEventListener('input',()=>{cancelAnimationFrame(raf);S[key]=+e.value;$('#'+key+'-value').textContent=e.value+(key==='alt'||key==='polar'?'°':'%');readout();draw();save();});}
+ if($('#filter')){$('#filter').value=S.filter;$('#filter').addEventListener('change',e=>{S.filter=e.target.value;readout();animate();save();});}
+ root.querySelectorAll('[data-key]').forEach(e=>e.addEventListener('click',()=>{S[e.dataset.key]=e.dataset.value;render();animate();save();}));
+ if($('#split'))$('#split').onclick=()=>{S.split=true;controls();readout();animate();save();};
+ if($('#trace'))$('#trace').onclick=animate;
+ if($('#noon'))$('#noon').onclick=()=>{S.alt=75;controls();readout();animate();save();};
+ if($('#sunset'))$('#sunset').onclick=()=>{S.alt=2;controls();readout();animate();save();};
+ if($('#cloud'))$('#cloud').onchange=e=>{S.cloud=e.target.checked;readout();animate();save();};
+}
+function readout(){let msg='';if(S.step===1)msg=S.split?'红光偏折较小，紫光偏折较大。颜色原本就在白光里。':'点击按钮，观察混在一起的光怎样分开。';
+ if(S.step===2){let a=[S.r,S.g,S.b];msg=a.every(v=>v===0)?'没有光进入：黑。':a.every(v=>v===100)?'三束光都较强：中心重叠处接近白色。':S.r===S.g&&S.b<S.r?'红、绿较强，蓝较弱：混合结果偏黄。':'调整的是各束光的强弱；已有的光没有变成另一种光。';}
+ if(S.step===3)msg=S.filter==='none'?'没有选择性吸收，各波段都能继续通过。':'变暗的光谱区代表较少通过；这些光主要被滤色片吸收。';
+ if(S.step===4){const data={reflect:['光返回原来的介质。','镜面反射中，入射角等于反射角；两个角都从法线量起。'],refract:['光跨过空气与水的界面。','从空气斜着进入水时，折射光通常向法线靠近。垂直入射时不发生方向偏折。'],scatter:['光向不同方向传播。','蓝紫光更容易被空气分子散射。红橙光也会散射，只是相对较弱。']}[S.phenomenon];msg=data[0];$('#explain').innerHTML=explanation(lessons[4],[data[1]]);}
+ if(S.step===5)msg=`图示球壳中的路径约为竖直路径的 ${mass(S.alt).toFixed(1)} 倍。红橙光在剩余直射光中的占比随路径加长而升高。`;
+ if(S.step===6){
+  const sky=S.view==='sky';
+  const paragraphs=sky?[
+   '<strong>① 太阳 → A：</strong>白天太阳较高，阳光到达你看的那片空气A之前，路径通常较短。虽然沿途也有散射，到达A处的阳光里仍有充足的蓝光，也有红、绿等其他颜色的光。',
+   '<strong>② A → 眼睛：</strong>A处的空气分子更容易散射蓝光，所以从A处转向你、进入眼睛的光中，蓝色成分较突出。你就看到蓝天。',
+   '<strong>不是空气被“染蓝”：</strong>眼睛接收到的是从A方向传来的光。路径较短、仍有蓝光是条件；A处对蓝光的较强散射，是偏蓝的关键。'
+  ]:[
+   '<strong>① 太阳 → A：</strong>日落前后，看太阳附近的霞光。阳光到达那片空气或云层A之前，已走过很长的大气路径，较多蓝光在途中散向别处。到达A处的阳光可能已经偏暖。',
+   '<strong>② A → 眼睛：</strong>即使空气分子仍更容易散射蓝光，也要先有足够的蓝光到达A处。当入射光中的蓝光已大幅减少时，散射到眼睛的光也可能偏暖。图中演示偏暖阳光照亮云层，再由云滴、冰晶散射到眼睛。',
+   '<strong>“转向别处”，不是“没了”：</strong>蓝光没有消失，也没有变成红光。这说的是日落附近的霞光；傍晚其他方向仍可能是蓝天，真正入夜后的黑暗是另一回事。'
+  ];
+  const summary=sky?'蓝天：阳光到达A处时仍有蓝光，A处又更容易把蓝光散射到眼睛。':'晚霞：阳光到达A处之前，较多蓝光已转向别处；到达A处的光可能偏暖。';
+  $('#explain').innerHTML=explanation({...lessons[6],key:summary},paragraphs);
+  msg=sky?'看见蓝天：到达A处仍有蓝光 → A处散射 → 进入眼睛。':S.cloud?'看见暖色云：到达A处前蓝光已较多散开 → 偏暖阳光照云 → 进入眼睛。':'移走云后，这条经云进入眼睛的光路不再存在。';
+ }
+ if(S.step===7)msg=S.polar===90?'两片方向垂直：理想模型中没有光透过。':S.polar===0?'两片方向平行：第一片之后的光，在理想模型中全部通过第二片。':'改变的是透过强度，不是按颜色把蓝光筛掉。';
+ $('#readout').textContent=msg;canvas.setAttribute('aria-label',lessons[S.step].title+'。'+msg);
+}
+function explanation(l,paras=l.paras){return `<div class="question">${l.question}</div><h3>${l.lead}</h3>${paras.map(p=>`<p>${p}</p>`).join('')}<p class="key"><strong>这一页记住</strong>${l.key}</p>`;}
+function render(){cancelAnimationFrame(raf);let l=lessons[S.step];$('.steps').innerHTML=lessons.map((x,i)=>`<button class="step" data-step="${i}" ${i===S.step?'aria-current="step"':''}><span>${String(i+1).padStart(2,'0')}</span>${x.short}</button>`).join('');root.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>go(+b.dataset.step));$('#scene-title').textContent=l.title;$('.counter').textContent=`${S.step+1} / 8`;$('#caption').textContent=l.caption;$('#explain').innerHTML=explanation(l);$('#prev').disabled=S.step===0;$('#next').textContent=S.step===7?'回到开头 ↺':'下一步 →';$('.progress').setAttribute('aria-valuenow',S.step+1);$('.progress div').style.width=(S.step+1)/8*100+'%';controls();readout();resize();}
+function go(step){S.step=Math.max(0,Math.min(7,step));render();save();}
+$('#prev').onclick=()=>go(S.step-1);$('#next').onclick=()=>go(S.step===7?0:S.step+1);
+new ResizeObserver(resize).observe(canvas);render();
+window.sunlightLab={getState:()=>({...S}),go};
+})();
+</script>
+</body>
+</html>
